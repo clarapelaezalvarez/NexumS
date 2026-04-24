@@ -24,12 +24,6 @@
             margin: 0 auto;
         }
 
-        /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
         .logo-icon {
             width: 80px;
             height: 80px;
@@ -58,87 +52,11 @@
             margin-top: 8px;
         }
 
-        /* Tela de Entrada */
-        .entry-screen {
-            background: white;
-            border-radius: 48px;
-            padding: 48px;
+        .header {
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
         }
 
-        .entry-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin: 32px 0;
-        }
-
-        .btn-entry {
-            padding: 16px 32px;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: none;
-        }
-
-        .btn-onboarding {
-            background: linear-gradient(135deg, #2c5f8a, #5b8c5a);
-            color: white;
-        }
-
-        .btn-onboarding:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(44, 95, 138, 0.3);
-        }
-
-        .btn-demo {
-            background: #e67e22;
-            color: white;
-        }
-
-        .btn-demo:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(230, 126, 34, 0.3);
-        }
-
-        /* Cards de Arquétipos */
-        .archetypes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-            margin-top: 32px;
-        }
-
-        .archetype-card {
-            background: white;
-            border-radius: 24px;
-            padding: 24px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid transparent;
-            text-align: center;
-        }
-
-        .archetype-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-
-        .archetype-card.fantasma { border-top: 5px solid #94a3b8; }
-        .archetype-card.explorador { border-top: 5px solid #3498db; }
-        .archetype-card.conector { border-top: 5px solid #2ecc71; }
-        .archetype-card.guardiao { border-top: 5px solid #f39c12; }
-
-        .archetype-icon { font-size: 48px; margin-bottom: 16px; }
-        .archetype-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
-        .archetype-desc { color: #5a6e7a; font-size: 0.85rem; margin-bottom: 16px; }
-        .archetype-stats { background: #f1f5f9; border-radius: 16px; padding: 12px; font-size: 0.8rem; text-align: left; margin-top: 16px; }
-
-        /* Cards e formulários (mesmos estilos do código anterior) */
         .card {
             background: white;
             border-radius: 32px;
@@ -172,6 +90,25 @@
             cursor: pointer;
         }
 
+        .btn-demo {
+            background: linear-gradient(135deg, #e67e22, #f39c12);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .btn-demo:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+        }
+
         .btn-danger {
             background: #e67e22;
             color: white;
@@ -181,11 +118,227 @@
             cursor: pointer;
         }
 
+        .entry-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 32px 0;
+        }
+
+        .btn-entry {
+            padding: 16px 32px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-onboarding {
+            background: linear-gradient(135deg, #2c5f8a, #5b8c5a);
+            color: white;
+        }
+
+        .btn-onboarding:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(44, 95, 138, 0.3);
+        }
+
+        .btn-demo-entry {
+            background: #e67e22;
+            color: white;
+        }
+
+        .btn-demo-entry:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(230, 126, 34, 0.3);
+        }
+
+        .archetypes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .archetype-card {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .archetype-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .archetype-card.fantasma { border-top: 5px solid #94a3b8; }
+        .archetype-card.explorador { border-top: 5px solid #3498db; }
+        .archetype-card.conector { border-top: 5px solid #2ecc71; }
+        .archetype-card.guardiao { border-top: 5px solid #f39c12; }
+
+        .archetype-icon { font-size: 48px; margin-bottom: 16px; }
+        .archetype-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
+        .archetype-desc { color: #5a6e7a; font-size: 0.85rem; margin-bottom: 16px; }
+        .archetype-stats { background: #f1f5f9; border-radius: 16px; padding: 12px; font-size: 0.8rem; text-align: left; margin-top: 16px; }
+
+        .progress-bar-container {
+            background: #e2e8f0;
+            border-radius: 40px;
+            height: 8px;
+            margin: 24px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #2c5f8a, #5b8c5a);
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .step {
+            flex: 1;
+            text-align: center;
+            padding: 8px;
+            background: #f1f5f9;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #94a3b8;
+            transition: all 0.3s;
+        }
+
+        .step.active {
+            background: #2c5f8a;
+            color: white;
+        }
+
+        .step.completed {
+            background: #5b8c5a;
+            color: white;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+            color: #2c5f8a;
+            font-size: 0.9rem;
+        }
+
+        .required {
+            color: #e67e22;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 20px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #5b8c5a;
+            box-shadow: 0 0 0 3px rgba(91, 140, 90, 0.1);
+        }
+
+        .row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .tag {
+            background: #f1f5f9;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #cbd5e1;
+        }
+
+        .tag.selected {
+            background: #2c5f8a;
+            color: white;
+            border-color: #2c5f8a;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: space-between;
+            margin-top: 32px;
+        }
+
+        .terms-box {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        .terms-box label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .terms-box input {
+            width: auto;
+            margin: 0;
+        }
+
+        .helper-text {
+            font-size: 0.75rem;
+            color: #5a6e7a;
+            margin-top: 4px;
+        }
+
         .hidden {
             display: none;
         }
 
-        /* Dashboard */
         .dashboard-header {
             display: flex;
             justify-content: space-between;
@@ -213,6 +366,14 @@
             padding: 6px 16px;
             border-radius: 40px;
             font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .reputation {
+            background: #ffd966;
+            padding: 6px 12px;
+            border-radius: 40px;
+            font-weight: 700;
             font-size: 0.85rem;
         }
 
@@ -298,26 +459,20 @@
             color: #2c5f8a;
         }
 
-        .tag {
-            background: #e2e8f0;
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 500;
-        }
-
-        .back-button {
-            margin-bottom: 20px;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+        .mode-info {
+            background: #e8f0fe;
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 12px;
+            font-size: 0.8rem;
             color: #2c5f8a;
-            font-weight: 600;
         }
 
-        .back-button:hover {
-            text-decoration: underline;
+        .mediation-panel {
+            background: #fff3e0;
+            border-radius: 16px;
+            padding: 16px;
+            margin-top: 16px;
         }
 
         .modal {
@@ -378,6 +533,20 @@
         .star.selected {
             color: #ffc107;
         }
+
+        .back-button {
+            margin-bottom: 20px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #2c5f8a;
+            font-weight: 600;
+        }
+
+        .back-button:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -390,13 +559,14 @@
             <div class="tagline">Conecte-se com intenção — Transforme suas relações</div>
         </div>
 
-        <div class="entry-screen">
+        <div class="card" style="text-align: center;">
             <h2 style="color: #1f4e6e; margin-bottom: 16px;">Bem-vinde ao Nexum Social</h2>
             <p style="color: #5a6e7a; margin-bottom: 32px;">Escolha como deseja começar sua jornada relacional</p>
 
             <div class="entry-buttons">
                 <button class="btn-entry btn-onboarding" id="startOnboardingBtn">🌱 Criar novo perfil (Onboarding)</button>
-                <button class="btn-entry btn-demo" id="showArchetypesBtn">🎭 Ver exemplos de arquétipos</button>
+                <button class="btn-entry btn-demo-entry" id="startDemoOnboardingBtn">🚀 Modo Demonstração (Onboarding automático)</button>
+                <button class="btn-entry" id="showArchetypesBtn" style="background: #2c5f8a; color: white;">🎭 Ver exemplos de arquétipos</button>
             </div>
 
             <div id="archetypesSection" class="hidden">
@@ -406,44 +576,28 @@
                         <div class="archetype-icon">👻</div>
                         <div class="archetype-name">Fantasma</div>
                         <div class="archetype-desc">Invisível, mas cheio de potencial</div>
-                        <div class="archetype-stats">
-                            📊 0-30 conexões • Reciprocidade: baixa<br>
-                            🎯 Foco: Sair da invisibilidade<br>
-                            🌍 Sugestões: Pessoas diferentes
-                        </div>
+                        <div class="archetype-stats">📊 0-30 conexões • Reciprocidade: baixa<br>🎯 Foco: Sair da invisibilidade</div>
                         <button class="btn-secondary" style="margin-top: 16px;" onclick="carregarPerfilDemo('Fantasma')">▶ Ver Dashboard</button>
                     </div>
                     <div class="archetype-card explorador" data-archetype="Explorador">
                         <div class="archetype-icon">🧭</div>
                         <div class="archetype-name">Explorador</div>
                         <div class="archetype-desc">Descobrindo novos horizontes</div>
-                        <div class="archetype-stats">
-                            📊 30-50 conexões • Reciprocidade: média<br>
-                            🎯 Foco: Expandir horizontes<br>
-                            🌍 Sugestões: Regional + aprendizado
-                        </div>
+                        <div class="archetype-stats">📊 30-50 conexões • Reciprocidade: média<br>🎯 Foco: Expandir horizontes</div>
                         <button class="btn-secondary" style="margin-top: 16px;" onclick="carregarPerfilDemo('Explorador')">▶ Ver Dashboard</button>
                     </div>
                     <div class="archetype-card conector" data-archetype="Conector">
                         <div class="archetype-icon">🔗</div>
                         <div class="archetype-name">Conector</div>
                         <div class="archetype-desc">Construtor de pontes</div>
-                        <div class="archetype-stats">
-                            📊 50-100 conexões • Reciprocidade: alta<br>
-                            🎯 Foco: Aprofundar vínculos<br>
-                            🌍 Sugestões: Repertórios + experiências
-                        </div>
+                        <div class="archetype-stats">📊 50-100 conexões • Reciprocidade: alta<br>🎯 Foco: Aprofundar vínculos</div>
                         <button class="btn-secondary" style="margin-top: 16px;" onclick="carregarPerfilDemo('Conector')">▶ Ver Dashboard</button>
                     </div>
                     <div class="archetype-card guardiao" data-archetype="Guardião">
                         <div class="archetype-icon">🛡️</div>
                         <div class="archetype-name">Guardião</div>
                         <div class="archetype-desc">Cuidador da comunidade</div>
-                        <div class="archetype-stats">
-                            📊 100+ conexões • Reciprocidade: excelente<br>
-                            🎯 Foco: Mediar e mentorar<br>
-                            🌍 Sugestões: Política + religião
-                        </div>
+                        <div class="archetype-stats">📊 100+ conexões • Reciprocidade: excelente<br>🎯 Foco: Mediar e mentorar</div>
                         <button class="btn-secondary" style="margin-top: 16px;" onclick="carregarPerfilDemo('Guardião')">▶ Ver Dashboard</button>
                     </div>
                 </div>
@@ -451,7 +605,6 @@
         </div>
     </div>
 
-    <!-- ONDE O ONBOARDING E DASHBOARD SERÃO INJETADOS DINAMICAMENTE -->
     <div id="dynamicContent"></div>
 </div>
 
@@ -481,58 +634,86 @@
     // ==================== PERFIS DEMO PARA CADA ARQUÉTIPO ====================
     const perfisDemo = {
         Fantasma: {
-            nome: "Lucas Oliveira", idade: 24, localidade: "Recife, PE, Brasil", profissao: "Estudante",
+            nome: "Lucas Oliveira", idade: 24, dataNascimento: "2000-03-15", localidade: "Recife, PE, Brasil", profissao: "Estudante",
             religiao: "Ateu/Agnóstico", posicaoPolitica: "Centro", timeFutebol: "Não torço",
-            valores: ["empatia", "liberdade"], gostosTexto: "Jogar games, ouvir música, sair com amigos",
-            aprenderTexto: "Programação, idiomas", crencasTransformacao: "Repensando minha carreira",
-            duvidasAbertas: "Como encontrar meu caminho profissional?",
-            experienciasVirada: "Mudei de cidade para estudar", repertorios: "posso contribuir com energia e vontade de aprender",
+            valores: ["🤝 Empatia", "🕊️ Liberdade"], gostosTexto: "Jogar games, ouvir música, sair com amigos, assistir séries",
+            aprenderTexto: "Programação, idiomas, fotografia", crencasTransformacao: "Repensando minha carreira e o que quero para o futuro",
+            duvidasAbertas: "Como encontrar meu caminho profissional? Como fazer network?",
+            experienciasVirada: "Mudei de cidade para estudar, primeira vez morando sozinho",
+            repertorios: "posso contribuir com energia positiva, ajuda em tarefas técnicas, vontade de aprender",
             arquetipo: "Fantasma", reputacao: 6.5, conexoesTotal: 12, mediaReciprocidade: 0.35, diversidadeCognitiva: 0.42,
-            conexoesAtivas: [], conversasRealizadas: []
+            conexoesAtivas: [], conversasRealizadas: [], mediacoesRealizadas: 0, mediacoesSucedidas: 0, concordaMonitoramento: true, concordaRegras: true
         },
         Explorador: {
-            nome: "Marina Santos", idade: 32, localidade: "São Paulo, SP, Brasil", profissao: "Marketing",
+            nome: "Marina Santos", idade: 32, dataNascimento: "1992-08-22", localidade: "São Paulo, SP, Brasil", profissao: "Marketing",
             religiao: "Espiritualista", posicaoPolitica: "Centro-esquerda", timeFutebol: "Palmeiras",
-            valores: ["aprendizado", "criatividade", "empatia"], gostosTexto: "Viajar, fotografar, fazer trilhas",
-            aprenderTexto: "Escalar montanhas, Reiki, italiano", crencasTransformacao: "Repensando o modelo tradicional de trabalho",
-            duvidasAbertas: "Como equilibrar vida digital e presencial?",
-            experienciasVirada: "Mochilão pela América Latina", repertorios: "posso contribuir com marketing social, organização de eventos",
+            valores: ["📚 Aprendizado", "🎨 Criatividade", "🤝 Empatia"], 
+            gostosTexto: "Viajar, fotografar, fazer trilhas, conhecer culturas diferentes, praticar yoga",
+            aprenderTexto: "Escalar montanhas, Reiki, italiano, fotografia noturna",
+            crencasTransformacao: "Repensando o modelo tradicional de trabalho e a relação com dinheiro",
+            duvidasAbertas: "Como equilibrar vida digital e presencial? Como construir comunidades?",
+            experienciasVirada: "Mochilão pela América Latina que durou 6 meses, transição de carreira dos 28 para os 30",
+            repertorios: "posso contribuir com marketing social, organização de eventos comunitários, mediação de grupos pequenos",
             arquetipo: "Explorador", reputacao: 8.2, conexoesTotal: 42, mediaReciprocidade: 0.68, diversidadeCognitiva: 0.75,
             conexoesAtivas: [{ id: 1, nome: "Ana Silva", conversasCount: 3, ultimaConversa: new Date().toISOString() }],
-            conversasRealizadas: []
+            conversasRealizadas: [], mediacoesRealizadas: 3, mediacoesSucedidas: 2, concordaMonitoramento: true, concordaRegras: true
         },
         Conector: {
-            nome: "Fernanda Costa", idade: 41, localidade: "Salvador, BA, Brasil", profissao: "Psicologia",
+            nome: "Fernanda Costa", idade: 41, dataNascimento: "1983-11-10", localidade: "Salvador, BA, Brasil", profissao: "Psicologia",
             religiao: "Candomblé", posicaoPolitica: "Esquerda", timeFutebol: "Bahia",
-            valores: ["solidariedade", "justiça", "respeito"], gostosTexto: "Dançar, cozinhar, ler psicologia",
-            aprenderTexto: "Mediação de conflitos, terapia comunitária", crencasTransformacao: "Repensando práticas terapêuticas tradicionais",
-            duvidasAbertas: "Como levar saúde mental para comunidades periféricas?",
-            experienciasVirada: "Atuação em projetos sociais na periferia", repertorios: "posso contribuir com escuta ativa, facilitação de grupos, mediação",
+            valores: ["🤲 Solidariedade", "⚖️ Justiça Social", "🌿 Respeito"], 
+            gostosTexto: "Dançar, cozinhar comidas típicas, ler psicologia comunitária, rodas de conversa",
+            aprenderTexto: "Mediação de conflitos, terapia comunitária, escrita terapêutica",
+            crencasTransformacao: "Repensando práticas terapêuticas tradicionais e a importância da ancestralidade",
+            duvidasAbertas: "Como levar saúde mental para comunidades periféricas? Como descolonizar a psicologia?",
+            experienciasVirada: "Atuação em projetos sociais na periferia por 10 anos, formação em mediação de conflitos",
+            repertorios: "posso contribuir com escuta ativa, facilitação de grupos, mediação de conflitos, rodas de conversa terapêuticas",
             arquetipo: "Conector", reputacao: 9.1, conexoesTotal: 78, mediaReciprocidade: 0.82, diversidadeCognitiva: 0.88,
             conexoesAtivas: [{ id: 2, nome: "Carlos Mendes", conversasCount: 5 }, { id: 3, nome: "Roberta Lima", conversasCount: 2 }],
-            conversasRealizadas: [], mediacoesRealizadas: 12, mediacoesSucedidas: 10
+            conversasRealizadas: [], mediacoesRealizadas: 12, mediacoesSucedidas: 10, concordaMonitoramento: true, concordaRegras: true
         },
         Guardião: {
-            nome: "Antônio Silva", idade: 58, localidade: "Porto Alegre, RS, Brasil", profissao: "Professor Aposentado",
+            nome: "Antônio Silva", idade: 58, dataNascimento: "1966-02-28", localidade: "Porto Alegre, RS, Brasil", profissao: "Professor Aposentado",
             religiao: "Católica", posicaoPolitica: "Centro-direita", timeFutebol: "Grêmio",
-            valores: ["sabedoria", "respeito", "solidariedade"], gostosTexto: "Ler filosofia, jardinagem, teatro",
-            aprenderTexto: "Tecnologia, netnografia", crencasTransformacao: "Repensando o papel da educação no mundo digital",
-            duvidasAbertas: "Como transmitir sabedoria para as novas gerações?",
-            experienciasVirada: "Aposentadoria, perda da esposa, redescoberta da espiritualidade",
-            repertorios: "posso contribuir com experiência de vida, mentoria, contação de histórias, mediação de conflitos intergeracionais",
+            valores: ["🌿 Respeito", "🤲 Solidariedade", "⚖️ Justiça Social"], 
+            gostosTexto: "Ler filosofia, jardinagem, teatro comunitário, encontros de bairro",
+            aprenderTexto: "Tecnologia, netnografia, escrita de memórias",
+            crencasTransformacao: "Repensando o papel da educação no mundo digital e a transmissão de saberes",
+            duvidasAbertas: "Como transmitir sabedoria para as novas gerações sem ser antiquado?",
+            experienciasVirada: "Aposentadoria, perda da esposa há 5 anos, redescoberta da espiritualidade em comunidade",
+            repertorios: "posso contribuir com experiência de vida, mentoria para jovens, contação de histórias, mediação de conflitos intergeracionais",
             arquetipo: "Guardião", reputacao: 9.8, conexoesTotal: 152, mediaReciprocidade: 0.91, diversidadeCognitiva: 0.92,
             conexoesAtivas: [{ id: 4, nome: "Jovem Aprendiz", conversasCount: 8 }, { id: 5, nome: "Maria do Socorro", conversasCount: 12 }],
-            conversasRealizadas: [], mediacoesRealizadas: 45, mediacoesSucedidas: 42
+            conversasRealizadas: [], mediacoesRealizadas: 45, mediacoesSucedidas: 42, concordaMonitoramento: true, concordaRegras: true
         }
     };
 
-    // Pessoas para sugestões
+    // Dados para preenchimento automático do onboarding
+    const autoFillData = {
+        nome: "Alex Andrade",
+        dataNascimento: "1992-05-15",
+        localidade: "São Paulo, SP, Brasil",
+        profissao: "Tecnologia",
+        religiao: "Espiritualista",
+        posicaoPolitica: "Centro-esquerda",
+        timeFutebol: "Corinthians",
+        valores: ["🤝 Empatia", "📚 Aprendizado", "🎨 Criatividade"],
+        gostosTexto: "Viajar para lugares pouco explorados, ler ficção científica e filosofia, praticar meditação mindfulness, assistir documentários sobre natureza, cozinhar pratos vegetarianos",
+        aprenderTexto: "Programação em Python para análise de dados, falar italiano fluentemente, técnicas avançadas de Reiki, marcenaria criativa",
+        crencasTransformacao: "Estou repensando minha relação com o tempo e produtividade. Antes eu achava que quanto mais ocupado, melhor. Agora questiono esse modelo. Também repenso minha visão sobre trabalho tradicional - será que faz sentido passar 8 horas por dia no escritório?",
+        duvidasAbertas: "Como podemos construir comunidades mais resilientes em grandes centros urbanos? Até que ponto a tecnologia aproxima ou afasta as pessoas? Como equilibrar vida digital e presencial de forma saudável?",
+        experienciasVirada: "Uma viagem de mochilão pela América do Sul que durou 6 meses - isso transformou completamente minha visão sobre simplicidade e conexão humana. A transição da carreira de administração para tecnologia aos 28 anos. O nascimento da minha filha.",
+        repertorios: "posso contribuir com tecnologia social para ONGs, mentoria para jovens que querem entrar na área de tech, facilitação de rodas de conversa, organização de eventos comunitários, escuta ativa",
+        concordaMonitoramento: true,
+        concordaRegras: true
+    };
+
     const pessoasDemo = [
-        { id: 1, nome: "Ana Silva", idade: 28, cidade: "Rio de Janeiro/RJ", profissao: "Psicologia", reputacao: 8.5, hobbies: "viajar, ler" },
-        { id: 2, nome: "Carlos Mendes", idade: 45, cidade: "Porto Alegre/RS", profissao: "Educação", reputacao: 9.2, hobbies: "cozinhar" },
-        { id: 3, nome: "Fernanda Lima", idade: 34, cidade: "Salvador/BA", profissao: "Arte/Design", reputacao: 8.9, hobbies: "dançar" },
-        { id: 4, nome: "Roberto Alves", idade: 52, cidade: "São Paulo/SP", profissao: "Direito", reputacao: 7.8, hobbies: "games" },
-        { id: 5, nome: "Mariana Brito", idade: 29, cidade: "Belo Horizonte/MG", profissao: "Saúde", reputacao: 9.1, hobbies: "yoga" }
+        { id: 1, nome: "Ana Silva", idade: 28, cidade: "Rio de Janeiro/RJ", profissao: "Psicologia", reputacao: 8.5 },
+        { id: 2, nome: "Carlos Mendes", idade: 45, cidade: "Porto Alegre/RS", profissao: "Educação", reputacao: 9.2 },
+        { id: 3, nome: "Fernanda Lima", idade: 34, cidade: "Salvador/BA", profissao: "Arte/Design", reputacao: 8.9 },
+        { id: 4, nome: "Roberto Alves", idade: 52, cidade: "São Paulo/SP", profissao: "Direito", reputacao: 7.8 },
+        { id: 5, nome: "Mariana Brito", idade: 29, cidade: "Belo Horizonte/MG", profissao: "Saúde", reputacao: 9.1 }
     ];
 
     let usuarioAtual = null;
@@ -542,29 +723,36 @@
     let aceitouNovaInteracao = null;
     let notaSelecionada = 0;
 
+    let currentStep = 0;
+    let userData = {};
+
+    // Funções principais
     function carregarPerfilDemo(arquetipo) {
         usuarioAtual = JSON.parse(JSON.stringify(perfisDemo[arquetipo]));
         usuarioAtual.id = 999;
         localStorage.setItem("nexumUserProfile", JSON.stringify(usuarioAtual));
         document.getElementById("entryScreen").style.display = "none";
+        document.getElementById("dynamicContent").innerHTML = "";
         renderizarDashboard();
     }
 
-    function iniciarOnboarding() {
+    function iniciarOnboarding(autoFill = false) {
         document.getElementById("entryScreen").style.display = "none";
-        renderizarOnboarding();
+        renderizarOnboarding(autoFill);
     }
 
-    function renderizarOnboarding() {
+    function renderizarOnboarding(autoFill = false) {
         const dynamicDiv = document.getElementById("dynamicContent");
         dynamicDiv.innerHTML = `
             <div id="onboardingScreen" class="container">
                 <div class="header">
                     <div class="logo-icon" style="width: 48px; height: 48px; font-size: 24px; display: inline-flex;">⟳</div>
-                    <div class="logo-text" style="font-size: 1.5rem;">Nexum Social</div>
+                    <div class="logo-text" style="font-size: 1.8rem;">Nexum Social</div>
+                    <div class="tagline">Complete seu perfil relacional</div>
                 </div>
                 <div class="card">
-                    <button class="btn-primary" id="backFromOnboarding" style="margin-bottom: 20px; background: #cbd5e1; color: #1a2c3e;">← Voltar</button>
+                    <div class="back-button" id="backFromOnboarding">← Voltar à tela inicial</div>
+                    <button class="btn-demo" id="autoFillBtn">🚀 Preencher automaticamente (Modo Demonstração)</button>
                     <div id="onboardingContent"></div>
                 </div>
             </div>
@@ -573,127 +761,404 @@
             document.getElementById("dynamicContent").innerHTML = "";
             document.getElementById("entryScreen").style.display = "block";
         };
+        if(autoFill) {
+            setTimeout(() => preencherAutoFill(), 100);
+        }
         carregarFormularioOnboarding();
+    }
+
+    function preencherAutoFill() {
+        // Esvaziar dados atuais
+        userData = {};
+        currentStep = 0;
+        
+        // Passo 1 - Identidade
+        const nomeInput = document.getElementById("nome");
+        if(nomeInput) nomeInput.value = autoFillData.nome;
+        const dataInput = document.getElementById("dataNascimento");
+        if(dataInput) dataInput.value = autoFillData.dataNascimento;
+        if(dataInput) dataInput.dispatchEvent(new Event('change'));
+        const localidadeInput = document.getElementById("localidade");
+        if(localidadeInput) localidadeInput.value = autoFillData.localidade;
+        const profissaoSelect = document.getElementById("profissao");
+        if(profissaoSelect) profissaoSelect.value = autoFillData.profissao;
+        
+        // Passo 2 - Perfil
+        const religiaoSelect = document.getElementById("religiao");
+        if(religiaoSelect) religiaoSelect.value = autoFillData.religiao;
+        const politicaSelect = document.getElementById("posicaoPolitica");
+        if(politicaSelect) politicaSelect.value = autoFillData.posicaoPolitica;
+        const timeSelect = document.getElementById("timeFutebol");
+        if(timeSelect) timeSelect.value = autoFillData.timeFutebol;
+        
+        // Valores (tags)
+        document.querySelectorAll("#valoresGroup .tag").forEach(tag => {
+            if(autoFillData.valores.includes(tag.textContent)) {
+                tag.classList.add("selected");
+            }
+        });
+        
+        // Passo 3 - Visões
+        const gostosTextarea = document.getElementById("gostosTexto");
+        if(gostosTextarea) gostosTextarea.value = autoFillData.gostosTexto;
+        const aprenderTextarea = document.getElementById("aprenderTexto");
+        if(aprenderTextarea) aprenderTextarea.value = autoFillData.aprenderTexto;
+        
+        // Passo 4 - Mapa Interior
+        const crencasTextarea = document.getElementById("crencasTransformacao");
+        if(crencasTextarea) crencasTextarea.value = autoFillData.crencasTransformacao;
+        const duvidasTextarea = document.getElementById("duvidasAbertas");
+        if(duvidasTextarea) duvidasTextarea.value = autoFillData.duvidasAbertas;
+        const experienciasTextarea = document.getElementById("experienciasVirada");
+        if(experienciasTextarea) experienciasTextarea.value = autoFillData.experienciasVirada;
+        
+        // Passo 5 - Repertórios
+        const repertoriosTextarea = document.getElementById("repertorios");
+        if(repertoriosTextarea) repertoriosTextarea.value = autoFillData.repertorios;
+        
+        // Passo 6 - Regras
+        const monitoramentoCheck = document.getElementById("concordaMonitoramento");
+        if(monitoramentoCheck) monitoramentoCheck.checked = autoFillData.concordaMonitoramento;
+        const regrasCheck = document.getElementById("concordaRegras");
+        if(regrasCheck) regrasCheck.checked = autoFillData.concordaRegras;
+        
+        alert("✅ Dados de demonstração preenchidos! Complete os passos ou vá direto para o final.");
     }
 
     function carregarFormularioOnboarding() {
         const container = document.getElementById("onboardingContent");
-        container.innerHTML = `
-            <div class="progress-bar-container"><div class="progress-bar" id="progressBar" style="width: 16.6%;"></div></div>
-            <div class="step-indicator" id="stepIndicator">
-                <div class="step active">1. Identidade</div><div class="step">2. Perfil</div><div class="step">3. Visões</div>
-                <div class="step">4. Interiores</div><div class="step">5. Repertórios</div><div class="step">6. Regras</div>
-            </div>
-            <div id="stepContainer"></div>
-        `;
+        if(!container) return;
+        
+        currentStep = 0;
+        userData = {
+            valores: [], gostosTexto: "", aprenderTexto: "", crencasTransformacao: "", duvidasAbertas: "", 
+            experienciasVirada: "", repertorios: "", concordaMonitoramento: false, concordaRegras: false
+        };
+        
         renderStep(0);
     }
 
-    let currentStep = 0;
-    let userData = {
-        nome: "", dataNascimento: "", idade: 0, localidade: "", profissao: "", religiao: "", posicaoPolitica: "", timeFutebol: "",
-        valores: [], gostosTexto: "", aprenderTexto: "", crencasTransformacao: "", duvidasAbertas: "", experienciasVirada: "", repertorios: "",
-        concordaMonitoramento: false, concordaRegras: false
-    };
-
     function renderStep(step) {
-        const stepContainer = document.getElementById("stepContainer");
+        const stepContainer = document.getElementById("onboardingContent");
         if(!stepContainer) return;
+        
         const stepsHtml = [
-            `<h3>✨ Quem é você?</h3><div class="form-group"><label>Nome *</label><input type="text" id="nome" placeholder="Seu nome"></div>
-             <div class="row-2"><div class="form-group"><label>Data Nascimento *</label><input type="date" id="dataNascimento"></div></div>
-             <div class="form-group"><label>📍 Cidade, Estado, País *</label><input type="text" id="localidade"></div>
-             <div class="form-group"><label>💼 Profissão</label><select id="profissao"><option value="">Selecione</option><option value="Tecnologia">Tecnologia</option><option value="Educação">Educação</option><option value="Saúde">Saúde</option></select></div>`,
-            `<h3>📝 Seu Perfil</h3><div class="form-group"><label>🙏 Religião</label><select id="religiao"><option value="">Selecione</option><option value="Católica">Católica</option><option value="Espiritualista">Espiritualista</option></select></div>
-             <div class="form-group"><label>🗳️ Posição política</label><select id="posicaoPolitica"><option value="">Selecione</option><option value="Centro-esquerda">Centro-esquerda</option><option value="Centro">Centro</option></select></div>
-             <div class="form-group"><label>⚽ Time</label><select id="timeFutebol"><option value="">Selecione</option><option value="Corinthians">Corinthians</option><option value="Não torço">Não torço</option></select></div>
-             <div class="form-group"><label>⭐ Valores (3-5)</label><div class="tag-group" id="valoresGroup"><span class="tag">🤝 Empatia</span><span class="tag">⚖️ Justiça</span><span class="tag">📚 Aprendizado</span><span class="tag">🎨 Criatividade</span></div></div>`,
-            `<h3>💛 O que te move?</h3><div class="form-group"><label>💛 Coisas que você gosta</label><textarea rows="3" id="gostosTexto"></textarea></div>
-             <div class="form-group"><label>📖 Quer aprender</label><textarea rows="3" id="aprenderTexto"></textarea></div>`,
-            `<h3>🧭 Mapa Interior</h3><div class="form-group"><label>🔄 Crenças em transformação</label><textarea rows="2" id="crencasTransformacao"></textarea></div>
-             <div class="form-group"><label>❓ Dúvidas abertas</label><textarea rows="2" id="duvidasAbertas"></textarea></div>
-             <div class="form-group"><label>⚡ Experiências de virada</label><textarea rows="2" id="experienciasVirada"></textarea></div>`,
-            `<h3>🎁 Com o que posso contribuir?</h3><div class="form-group"><textarea rows="4" id="repertorios" placeholder="posso contribuir com..."></textarea></div>`,
-            `<h3>📜 Regras</h3><div class="terms-box"><label><input type="checkbox" id="concordaMonitoramento"> ✅ Concordo com o monitoramento</label></div>
-             <div class="terms-box"><label><input type="checkbox" id="concordaRegras"> ✅ Concordo com as regras</label></div>`
+            `<div class="progress-bar-container"><div class="progress-bar" id="progressBar" style="width: 16.6%;"></div></div>
+             <div class="step-indicator" id="stepIndicator">
+                 <div class="step active">1. Identidade</div><div class="step">2. Perfil</div><div class="step">3. Visões</div>
+                 <div class="step">4. Interiores</div><div class="step">5. Repertórios</div><div class="step">6. Regras</div>
+             </div>
+             <div id="stepContent">
+                 <h3>✨ Quem é você?</h3>
+                 <div class="form-group"><label>Nome completo <span class="required">*</span></label><input type="text" id="nome" placeholder="Como você gostaria de ser chamade?"></div>
+                 <div class="row-2"><div class="form-group"><label>Data de Nascimento <span class="required">*</span></label><input type="date" id="dataNascimento"></div>
+                 <div class="form-group"><label>Idade</label><input type="text" id="idadeDisplay" readonly placeholder="Calculada automaticamente" style="background:#f1f5f9;"></div></div>
+                 <div class="form-group"><label>📍 Cidade, Estado, País <span class="required">*</span></label><input type="text" id="localidade" placeholder="Ex: São Paulo, SP, Brasil"></div>
+                 <div class="form-group"><label>💼 Profissão</label><select id="profissao"><option value="">Selecione...</option><option value="Tecnologia">Tecnologia</option><option value="Educação">Educação</option><option value="Saúde">Saúde</option><option value="Arte/Design">Arte/Design</option><option value="Direito">Direito</option><option value="Psicologia">Psicologia</option></select></div>
+             </div>`,
+            `<div class="progress-bar-container"><div class="progress-bar" id="progressBar" style="width: 33.3%;"></div></div>
+             <div class="step-indicator" id="stepIndicator">
+                 <div class="step completed">1. Identidade</div><div class="step active">2. Perfil</div><div class="step">3. Visões</div>
+                 <div class="step">4. Interiores</div><div class="step">5. Repertórios</div><div class="step">6. Regras</div>
+             </div>
+             <div id="stepContent">
+                 <h3>📝 Seu Perfil</h3>
+                 <div class="form-group"><label>🙏 Religião</label><select id="religiao"><option value="">Selecione...</option><option value="Católica">Católica</option><option value="Evangélica">Evangélica</option><option value="Espírita">Espírita</option><option value="Budista">Budista</option><option value="Ateu/Agnóstico">Ateu/Agnóstico</option><option value="Espiritualista">Espiritualista</option></select></div>
+                 <div class="form-group"><label>🗳️ Posição política</label><select id="posicaoPolitica"><option value="">Selecione...</option><option value="Extrema-esquerda">Extrema-esquerda</option><option value="Esquerda">Esquerda</option><option value="Centro-esquerda">Centro-esquerda</option><option value="Centro">Centro</option><option value="Centro-direita">Centro-direita</option><option value="Direita">Direita</option><option value="Apolítico">Apolítico</option></select></div>
+                 <div class="form-group"><label>⚽ Time de futebol</label><select id="timeFutebol"><option value="">Selecione...</option><option value="Flamengo">Flamengo</option><option value="Corinthians">Corinthians</option><option value="Palmeiras">Palmeiras</option><option value="São Paulo">São Paulo</option><option value="Não torço">Não torço</option></select></div>
+                 <div class="form-group"><label>⭐ Valores fundamentais (3-5) <span class="required">*</span></label>
+                     <div class="tag-group" id="valoresGroup">
+                         <span class="tag">🤝 Empatia</span><span class="tag">⚖️ Justiça Social</span><span class="tag">🕊️ Liberdade</span>
+                         <span class="tag">📚 Aprendizado</span><span class="tag">🎨 Criatividade</span><span class="tag">🤲 Solidariedade</span>
+                         <span class="tag">🌿 Respeito</span><span class="tag">🔥 Coragem</span>
+                     </div>
+                 </div>
+             </div>`,
+            `<div class="progress-bar-container"><div class="progress-bar" id="progressBar" style="width: 50%;"></div></div>
+             <div class="step-indicator" id="stepIndicator">
+                 <div class="step completed">1. Identidade</div><div class="step completed">2. Perfil</div><div class="step active">3. Visões</div>
+                 <div class="step">4. Interiores</div><div class="step">5. Repertórios</div><div class="step">6. Regras</div>
+             </div>
+             <div id="stepContent">
+                 <h3>💛 O que te move?</h3>
+                 <div class="form-group"><label>💛 Coisas que você gosta muito de fazer</label><textarea rows="3" id="gostosTexto" placeholder="Escreva suas paixões e hobbies..."></textarea><div class="helper-text">Conte-nos sobre o que te traz alegria.</div></div>
+                 <div class="form-group"><label>📖 Coisas que você gostaria de aprender</label><textarea rows="3" id="aprenderTexto" placeholder="O que você tem vontade de aprender?"></textarea><div class="helper-text">Compartilhe seus interesses de aprendizado.</div></div>
+             </div>`,
+            `<div class="progress-bar-container"><div class="progress-bar" id="progressBar" style="width: 66.6%;"></div></div>
+             <div class="step-indicator" id="stepIndicator">
+                 <div class="step completed">1. Identidade</div><div class="step completed">2. Perfil</div><div class="step completed">3. Visões</div>
+                 <div class="step active">4. Interiores</div><div class="step">5. Repertórios</div><div class="step">6. Regras</div>
+             </div>
+             <div id="stepContent">
+                 <h3>🧭 Mapa Interior</h3>
+                 <div class="form-group"><label>🔄 Crenças em transformação ("estou repensando...")</label><textarea rows="3" id="crencasTransformacao" placeholder="Ex: Estou repensando minha relação com dinheiro, com fé, com política..."></textarea></div>
+                 <div class="form-group"><label>❓ Dúvidas abertas ("quero entender melhor sobre...")</label><textarea rows="3" id="duvidasAbertas" placeholder="Ex: Como construir comunidades reais, como lidar com conflitos..."></textarea></div>
+                 <div class="form-group"><label>⚡ Experiências de virada (não conquistas, transições de vida)</label><textarea rows="3" id="experienciasVirada" placeholder="Ex: Mudança de país, perda de um ente querido, transição de carreira..."></textarea></div>
+             </div>`,
+            `<div class="progress-bar-container"><div class="progress-bar" id="progressBar" style="width: 83.3%;"></div></div>
+             <div class="step-indicator" id="stepIndicator">
+                 <div class="step completed">1. Identidade</div><div class="step completed">2. Perfil</div><div class="step completed">3. Visões</div>
+                 <div class="step completed">4. Interiores</div><div class="step active">5. Repertórios</div><div class="step">6. Regras</div>
+             </div>
+             <div id="stepContent">
+                 <h3>🎁 O que você pode oferecer?</h3>
+                 <div class="form-group"><label>🎁 Com o que posso contribuir?</label><textarea rows="4" id="repertorios" placeholder="posso contribuir com..."></textarea><div class="helper-text">Compartilhe seus conhecimentos, habilidades e talentos.</div></div>
+             </div>`,
+            `<div class="progress-bar-container"><div class="progress-bar" id="progressBar" style="width: 100%;"></div></div>
+             <div class="step-indicator" id="stepIndicator">
+                 <div class="step completed">1. Identidade</div><div class="step completed">2. Perfil</div><div class="step completed">3. Visões</div>
+                 <div class="step completed">4. Interiores</div><div class="step completed">5. Repertórios</div><div class="step active">6. Regras</div>
+             </div>
+             <div id="stepContent">
+                 <h3>📜 Regras e Compromissos</h3>
+                 <div class="terms-box"><label><input type="checkbox" id="concordaMonitoramento"><span>✅ Eu concordo que o sistema monitore minhas conversas em tempo real e intervenha se necessário</span></label><div class="helper-text" style="margin-left:28px;">O sistema NÃO armazena conversas permanentemente.</div></div>
+                 <div class="terms-box"><label><input type="checkbox" id="concordaRegras"><span>✅ Eu concordo com as regras de funcionamento da plataforma</span></label><div class="helper-text" style="margin-left:28px;">Respeito, cordialidade, sem baixo calão. A plataforma pode expulsar quem romper as regras.</div></div>
+             </div>`
         ];
-        stepContainer.innerHTML = stepsHtml[step] + `<div class="btn-group" style="margin-top: 32px;">${step > 0 ? '<button class="btn-secondary" onclick="prevStepForm()">← Voltar</button>' : ''}<button class="btn-primary" onclick="nextStepForm()">${step === 5 ? 'Finalizar' : 'Próximo →'}</button></div>`;
-        if(step === 1 && document.getElementById("valoresGroup")) {
-            document.querySelectorAll("#valoresGroup .tag").forEach(t => t.onclick = function() { this.classList.toggle("selected"); });
+        
+        stepContainer.innerHTML = stepsHtml[step] + `<div class="btn-group" style="margin-top: 32px;">${step > 0 ? '<button class="btn-secondary" id="prevBtn">← Voltar</button>' : ''}<button class="btn-primary" id="nextBtn">${step === 5 ? 'Finalizar' : 'Próximo →'}</button></div>`;
+        
+        // Configurar eventos dos botões
+        const nextBtn = document.getElementById("nextBtn");
+        const prevBtn = document.getElementById("prevBtn");
+        if(nextBtn) nextBtn.onclick = () => nextStepForm();
+        if(prevBtn) prevBtn.onclick = () => prevStepForm();
+        
+        // Configurar cálculo de idade
+        if(step === 0) {
+            const dataInput = document.getElementById("dataNascimento");
+            if(dataInput) {
+                dataInput.onchange = function() {
+                    const idade = calcularIdade(this.value);
+                    document.getElementById("idadeDisplay").value = idade ? `${idade} anos` : "";
+                    userData.idade = idade;
+                };
+            }
         }
-        if(step === 0 && document.getElementById("dataNascimento")) {
-            document.getElementById("dataNascimento").onchange = function() { userData.idade = calcularIdade(this.value); };
+        
+        // Configurar seleção de tags
+        if(step === 1) {
+            document.querySelectorAll("#valoresGroup .tag").forEach(tag => {
+                tag.onclick = function() { this.classList.toggle("selected"); };
+            });
         }
+        
+        // Atualizar barra de progresso
+        updateProgress();
     }
-
-    function calcularIdade(dataNasc) { if(!dataNasc) return 0; const hoje = new Date(), nasc = new Date(dataNasc); let idade = hoje.getFullYear() - nasc.getFullYear(); if(hoje.getMonth() < nasc.getMonth() || (hoje.getMonth() === nasc.getMonth() && hoje.getDate() < nasc.getDate())) idade--; return idade; }
-
+    
+    function calcularIdade(dataNasc) {
+        if(!dataNasc) return 0;
+        const hoje = new Date();
+        const nasc = new Date(dataNasc);
+        let idade = hoje.getFullYear() - nasc.getFullYear();
+        const mesDiff = hoje.getMonth() - nasc.getMonth();
+        if(mesDiff < 0 || (mesDiff === 0 && hoje.getDate() < nasc.getDate())) idade--;
+        return idade;
+    }
+    
     function collectStepData(step) {
-        if(step === 0) { userData.nome = document.getElementById("nome")?.value || ""; userData.dataNascimento = document.getElementById("dataNascimento")?.value || ""; userData.localidade = document.getElementById("localidade")?.value || ""; userData.profissao = document.getElementById("profissao")?.value || ""; }
-        else if(step === 1) { userData.religiao = document.getElementById("religiao")?.value || ""; userData.posicaoPolitica = document.getElementById("posicaoPolitica")?.value || ""; userData.timeFutebol = document.getElementById("timeFutebol")?.value || ""; userData.valores = Array.from(document.querySelectorAll("#valoresGroup .tag.selected")).map(t => t.textContent); }
-        else if(step === 2) { userData.gostosTexto = document.getElementById("gostosTexto")?.value || ""; userData.aprenderTexto = document.getElementById("aprenderTexto")?.value || ""; }
-        else if(step === 3) { userData.crencasTransformacao = document.getElementById("crencasTransformacao")?.value || ""; userData.duvidasAbertas = document.getElementById("duvidasAbertas")?.value || ""; userData.experienciasVirada = document.getElementById("experienciasVirada")?.value || ""; }
-        else if(step === 4) { userData.repertorios = document.getElementById("repertorios")?.value || ""; }
-        else if(step === 5) { userData.concordaMonitoramento = document.getElementById("concordaMonitoramento")?.checked || false; userData.concordaRegras = document.getElementById("concordaRegras")?.checked || false; }
+        if(step === 0) {
+            userData.nome = document.getElementById("nome")?.value || "";
+            userData.dataNascimento = document.getElementById("dataNascimento")?.value || "";
+            userData.localidade = document.getElementById("localidade")?.value || "";
+            userData.profissao = document.getElementById("profissao")?.value || "";
+            if(userData.dataNascimento) userData.idade = calcularIdade(userData.dataNascimento);
+        } else if(step === 1) {
+            userData.religiao = document.getElementById("religiao")?.value || "";
+            userData.posicaoPolitica = document.getElementById("posicaoPolitica")?.value || "";
+            userData.timeFutebol = document.getElementById("timeFutebol")?.value || "";
+            userData.valores = Array.from(document.querySelectorAll("#valoresGroup .tag.selected")).map(t => t.textContent);
+        } else if(step === 2) {
+            userData.gostosTexto = document.getElementById("gostosTexto")?.value || "";
+            userData.aprenderTexto = document.getElementById("aprenderTexto")?.value || "";
+        } else if(step === 3) {
+            userData.crencasTransformacao = document.getElementById("crencasTransformacao")?.value || "";
+            userData.duvidasAbertas = document.getElementById("duvidasAbertas")?.value || "";
+            userData.experienciasVirada = document.getElementById("experienciasVirada")?.value || "";
+        } else if(step === 4) {
+            userData.repertorios = document.getElementById("repertorios")?.value || "";
+        } else if(step === 5) {
+            userData.concordaMonitoramento = document.getElementById("concordaMonitoramento")?.checked || false;
+            userData.concordaRegras = document.getElementById("concordaRegras")?.checked || false;
+        }
     }
-
-    function nextStepForm() { collectStepData(currentStep); if(currentStep === 1 && userData.valores.length < 2) { alert("Selecione pelo menos 2 valores"); return; } if(currentStep === 5) { if(!userData.concordaMonitoramento || !userData.concordaRegras) { alert("Aceite os termos"); return; } finalizarOnboardingDemo(); return; } currentStep++; renderStep(currentStep); updateProgress(); }
-    function prevStepForm() { if(currentStep > 0) { currentStep--; renderStep(currentStep); updateProgress(); } }
-    function updateProgress() { const progress = ((currentStep + 1) / 6) * 100; const bar = document.getElementById("progressBar"); if(bar) bar.style.width = `${progress}%`; }
-
+    
+    function validateStep(step) {
+        if(step === 0) {
+            if(!userData.nome?.trim()) { alert("Digite seu nome."); return false; }
+            if(!userData.dataNascimento) { alert("Informe sua data de nascimento."); return false; }
+            if(!userData.localidade?.trim()) { alert("Informe sua localidade."); return false; }
+        } else if(step === 1) {
+            if(!userData.valores || userData.valores.length < 2) { alert("Selecione pelo menos 2 valores."); return false; }
+        } else if(step === 5) {
+            if(!userData.concordaMonitoramento) { alert("Concorde com o monitoramento."); return false; }
+            if(!userData.concordaRegras) { alert("Concorde com as regras."); return false; }
+        }
+        return true;
+    }
+    
+    function nextStepForm() {
+        collectStepData(currentStep);
+        if(!validateStep(currentStep)) return;
+        
+        if(currentStep < 5) {
+            currentStep++;
+            renderStep(currentStep);
+        } else {
+            finalizarOnboardingDemo();
+        }
+    }
+    
+    function prevStepForm() {
+        if(currentStep > 0) {
+            collectStepData(currentStep);
+            currentStep--;
+            renderStep(currentStep);
+        }
+    }
+    
+    function updateProgress() {
+        const bar = document.getElementById("progressBar");
+        if(bar) {
+            const progress = ((currentStep + 1) / 6) * 100;
+            bar.style.width = `${progress}%`;
+        }
+    }
+    
+    function determinarArquetipo() {
+        const idade = userData.idade || 30;
+        const temExperiencias = (userData.experienciasVirada || "").length > 30;
+        const temRepertorios = (userData.repertorios || "").length > 40;
+        const temDuvidas = (userData.duvidasAbertas || "").length > 30;
+        
+        if(temExperiencias && temRepertorios && idade > 40) return "Guardião";
+        if(temRepertorios && userData.valores?.includes("📚 Aprendizado")) return "Conector";
+        if(temDuvidas || (userData.aprenderTexto || "").length > 20) return "Explorador";
+        return "Fantasma";
+    }
+    
     function finalizarOnboardingDemo() {
-        userData.idade = calcularIdade(userData.dataNascimento);
-        const arquetipo = (userData.experienciasVirada.length > 20 && userData.repertorios.length > 30 && userData.idade > 35) ? "Guardião" : (userData.repertorios.length > 30 ? "Conector" : (userData.duvidasAbertas.length > 20 ? "Explorador" : "Fantasma"));
-        usuarioAtual = { ...userData, arquetipo, reputacao: 7.5, conexoesTotal: 0, mediaReciprocidade: 0.35, diversidadeCognitiva: 0.4, conexoesAtivas: [], conversasRealizadas: [], mediacoesRealizadas: 0, mediacoesSucedidas: 0, id: 999 };
+        collectStepData(currentStep);
+        if(!userData.nome?.trim()) { alert("Complete todos os passos."); return; }
+        if(!userData.valores || userData.valores.length < 2) { alert("Selecione pelo menos 2 valores."); return; }
+        if(!userData.concordaMonitoramento || !userData.concordaRegras) { alert("Aceite os termos."); return; }
+        
+        const arquetipo = determinarArquetipo();
+        usuarioAtual = {
+            ...userData, arquetipo, reputacao: 7.5, conexoesTotal: 0, mediaReciprocidade: 0.35, 
+            diversidadeCognitiva: 0.4, conexoesAtivas: [], conversasRealizadas: [], 
+            mediacoesRealizadas: 0, mediacoesSucedidas: 0, id: 999
+        };
         localStorage.setItem("nexumUserProfile", JSON.stringify(usuarioAtual));
         document.getElementById("dynamicContent").innerHTML = "";
         renderizarDashboard();
     }
-
+    
     function renderizarDashboard() {
         const dynamicDiv = document.getElementById("dynamicContent");
         dynamicDiv.innerHTML = `
             <div id="dashboardScreen" class="container">
                 <div class="dashboard-header">
-                    <div style="display: flex; align-items: center; gap: 12px;"><div class="logo-icon" style="width: 40px; height: 40px; font-size: 20px;">⟳</div><div class="logo-text" style="font-size: 1.3rem;">Nexum Social</div></div>
+                    <div style="display: flex; align-items: center; gap: 12px;"><div class="logo-icon" style="width: 40px; height: 40px; font-size: 20px;">⟳</div><div class="logo-text" style="font-size: 1.5rem;">Nexum Social</div></div>
                     <div class="user-card"><span id="dashboardUserName"></span><span class="archetype-badge" id="dashboardArchetype"></span><span class="reputation" id="dashboardReputation"></span></div>
                 </div>
-                <button id="backToEntry" class="btn-secondary" style="margin-bottom: 16px;">← Voltar à tela inicial</button>
+                <div class="back-button" id="backToEntry">← Voltar à tela inicial</div>
                 <div class="nav-tabs"><button class="nav-tab active" data-tab="discover">🔍 Descobrir</button><button class="nav-tab" data-tab="connections">💬 Conexões</button><button class="nav-tab" data-tab="profile">📊 Perfil</button><button class="nav-tab" data-tab="mediation">🕊️ Mediações</button></div>
                 <div class="dashboard-grid">
-                    <div id="mainContent"><div id="discoverTab" class="tab-content"><div class="card"><div class="section-title" style="font-weight:700; margin-bottom:16px;">🎯 Para você hoje</div><div id="suggestionsList" class="connections-list"></div></div></div>
-                    <div id="connectionsTab" class="tab-content hidden"><div class="card"><div class="section-title" style="font-weight:700; margin-bottom:16px;">💬 Conexões em andamento</div><div id="activeConnectionsList"></div></div></div>
-                    <div id="profileTab" class="tab-content hidden"><div class="card"><div class="section-title" style="font-weight:700; margin-bottom:16px;">📊 Assinatura Relacional</div><div id="profileStats"></div></div></div>
-                    <div id="mediationTab" class="tab-content hidden"><div class="card"><div class="section-title" style="font-weight:700; margin-bottom:16px;">🕊️ Mediação</div><div id="mediationList"></div></div></div></div>
-                    <div><div class="card"><div class="section-title" style="font-weight:700; margin-bottom:16px;">📈 Estatísticas</div><div class="metrics-grid" id="statsGrid"></div><div id="pontesNaturais"></div></div>
-                    <div class="card"><div class="section-title" style="font-weight:700; margin-bottom:16px;">🏆 Badges</div><div id="badgesList"></div></div>
-                    <div class="card"><div class="section-title" style="font-weight:700; margin-bottom:16px;">⚙️ Modo</div><select id="discoveryMode" style="width:100%; padding:12px; border-radius:40px;"><option value="expandir">🌍 Expandir Horizontes</option><option value="aprofundar">💞 Aprofundar</option><option value="aleatorio">🎲 Exploração Livre</option></select><div id="modeDescription" class="mode-info" style="background:#e8f0fe; padding:12px; border-radius:12px; margin-top:12px;"></div></div></div>
+                    <div id="mainContent">
+                        <div id="discoverTab" class="tab-content"><div class="card"><div class="section-title" style="font-weight:700; margin-bottom:16px;">🎯 Para você hoje</div><div id="suggestionsList" class="connections-list"></div></div></div>
+                        <div id="connectionsTab" class="tab-content hidden"><div class="card"><div class="section-title" style="font-weight:700; margin-bottom:16px;">💬 Conexões em andamento</div><div id="activeConnectionsList" class="connections-list"></div></div></div>
+                        <div id="profileTab" class="tab-content hidden"><div class="card"><div class="section-title" style="font-weight:700; margin-bottom:16px;">📊 Assinatura Relacional</div><div id="profileStats"></div></div></div>
+                        <div id="mediationTab" class="tab-content hidden"><div class="card"><div class="section-title" style="font-weight:700; margin-bottom:16px;">🕊️ Mediação</div><div id="mediationList"></div></div></div>
+                    </div>
+                    <div>
+                        <div class="card"><div class="section-title" style="font-weight:700; margin-bottom:16px;">📈 Estatísticas</div><div class="metrics-grid" id="statsGrid"></div><div id="pontesNaturais"></div></div>
+                        <div class="card"><div class="section-title" style="font-weight:700; margin-bottom:16px;">🏆 Badges</div><div id="badgesList"></div></div>
+                        <div class="card"><div class="section-title" style="font-weight:700; margin-bottom:16px;">⚙️ Modo de Descoberta</div><select id="discoveryMode" style="width:100%; padding:12px; border-radius:40px;"><option value="expandir">🌍 Expandir Horizontes</option><option value="aprofundar">💞 Aprofundar Conexões</option><option value="aleatorio">🎲 Exploração Livre</option></select><div id="modeDescription" class="mode-info">📌 Modo Expandir Horizontes</div></div>
+                    </div>
                 </div>
             </div>
         `;
-        document.getElementById("backToEntry").onclick = () => { document.getElementById("dynamicContent").innerHTML = ""; document.getElementById("entryScreen").style.display = "block"; };
+        
+        document.getElementById("backToEntry").onclick = () => {
+            document.getElementById("dynamicContent").innerHTML = "";
+            document.getElementById("entryScreen").style.display = "block";
+        };
+        
         carregarDashboardDados();
-        document.querySelectorAll(".nav-tab").forEach(tab => { tab.onclick = () => { document.querySelectorAll(".nav-tab").forEach(t => t.classList.remove("active")); tab.classList.add("active"); document.querySelectorAll(".tab-content").forEach(t => t.classList.add("hidden")); document.getElementById(tab.dataset.tab + "Tab").classList.remove("hidden"); }; });
-        document.getElementById("discoveryMode").onchange = () => { document.getElementById("modeDescription").innerHTML = document.getElementById("discoveryMode").value === "expandir" ? "📌 Expandir Horizontes: prioriza pessoas diferentes de você" : document.getElementById("discoveryMode").value === "aprofundar" ? "📌 Aprofundar: foco em reciprocidade" : "📌 Exploração Livre: controle total"; };
+        
+        document.querySelectorAll(".nav-tab").forEach(tab => {
+            tab.onclick = () => {
+                document.querySelectorAll(".nav-tab").forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
+                document.querySelectorAll(".tab-content").forEach(t => t.classList.add("hidden"));
+                document.getElementById(tab.dataset.tab + "Tab").classList.remove("hidden");
+            };
+        });
+        
+        document.getElementById("discoveryMode").onchange = () => {
+            const mode = document.getElementById("discoveryMode").value;
+            document.getElementById("modeDescription").innerHTML = mode === "expandir" ? "📌 Expandir Horizontes: prioriza pessoas diferentes de você" : mode === "aprofundar" ? "📌 Aprofundar: foco em reciprocidade" : "📌 Exploração Livre: controle total";
+        };
     }
-
+    
     function carregarDashboardDados() {
         const perfil = JSON.parse(localStorage.getItem("nexumUserProfile"));
         if(!perfil) return;
         usuarioAtual = perfil;
+        
         document.getElementById("dashboardUserName").innerHTML = `${usuarioAtual.nome} ⭐ ${usuarioAtual.reputacao.toFixed(1)}`;
         document.getElementById("dashboardArchetype").innerHTML = usuarioAtual.arquetipo;
         document.getElementById("dashboardReputation").innerHTML = `🏆 ${usuarioAtual.reputacao.toFixed(1)}`;
-        document.getElementById("statsGrid").innerHTML = `<div class="metric-card"><div class="metric-value">${usuarioAtual.conexoesTotal}</div><div>Conexões</div></div><div class="metric-card"><div class="metric-value">${usuarioAtual.mediaReciprocidade.toFixed(2)}</div><div>Reciprocidade</div></div><div class="metric-card"><div class="metric-value">${usuarioAtual.diversidadeCognitiva.toFixed(2)}</div><div>Div. Cognitiva</div></div>`;
-        document.getElementById("pontesNaturais").innerHTML = `<strong>🌉 Pontes:</strong><br>• Diferentes gerações<br>• Diferentes segmentos`;
-        document.getElementById("badgesList").innerHTML = `<span class="tag">👻 ${usuarioAtual.arquetipo}</span>${usuarioAtual.conexoesTotal > 30 ? '<span class="tag">🎒 Explorador</span>' : ''}${usuarioAtual.conexoesTotal > 100 ? '<span class="tag">🛡️ Guardião</span>' : ''}`;
+        
+        document.getElementById("statsGrid").innerHTML = `
+            <div class="metric-card"><div class="metric-value">${usuarioAtual.conexoesTotal}</div><div>Conexões</div></div>
+            <div class="metric-card"><div class="metric-value">${usuarioAtual.mediaReciprocidade.toFixed(2)}</div><div>Reciprocidade</div></div>
+            <div class="metric-card"><div class="metric-value">${usuarioAtual.diversidadeCognitiva.toFixed(2)}</div><div>Div. Cognitiva</div></div>
+            <div class="metric-card"><div class="metric-value">${usuarioAtual.pontosCegos || 2}</div><div>Pontos Cegos</div></div>
+        `;
+        
+        document.getElementById("pontesNaturais").innerHTML = `<strong>🌉 Pontes Naturais:</strong><br>• Conecta diferentes gerações<br>• Conecta diferentes segmentos<br>• Conecta diferentes visões políticas`;
+        
+        let badges = [`<span class="tag">👻 ${usuarioAtual.arquetipo}</span>`];
+        if(usuarioAtual.conexoesTotal > 30) badges.push('<span class="tag">🎒 Explorador</span>');
+        if(usuarioAtual.conexoesTotal > 100) badges.push('<span class="tag">🛡️ Guardião</span>');
+        if(usuarioAtual.mediacoesRealizadas > 10) badges.push('<span class="tag">🕊️ Mediador</span>');
+        document.getElementById("badgesList").innerHTML = badges.join("");
+        
         let sugestoes = pessoasDemo.filter(p => !(usuarioAtual.conversasRealizadas || []).some(c => c.id === p.id));
-        document.getElementById("suggestionsList").innerHTML = sugestoes.map(p => `<div class="connection-card" onclick="iniciarChamada(${JSON.stringify(p).replace(/"/g, '&quot;')})"><div><h4>${p.nome}, ${p.idade}</h4><div><span class="tag">📍 ${p.cidade}</span><span class="tag">⭐ ${p.reputacao}</span></div></div><button class="btn-primary">Conectar</button></div>`).join("");
-        document.getElementById("activeConnectionsList").innerHTML = (usuarioAtual.conexoesAtivas || []).length ? usuarioAtual.conexoesAtivas.map(c => `<div class="connection-card"><div><h4>${c.nome}</h4><span class="tag">💬 ${c.conversasCount} conversas</span></div><button class="btn-primary" onclick="alert('Reconectar com ${c.nome}')">📞 Reconectar</button></div>`).join("") : "<div style='text-align:center; padding:20px;'>Nenhuma conexão ativa</div>";
-        document.getElementById("profileStats").innerHTML = `<div class="metric-card"><strong>🧑 ${usuarioAtual.nome}</strong><br>${usuarioAtual.idade || '-'} anos • ${usuarioAtual.localidade}</div><div class="metric-card"><strong>🎭 ${usuarioAtual.arquetipo}</strong></div><div class="metric-card"><strong>💼 ${usuarioAtual.profissao || '-'}</strong></div><div class="metric-card"><strong>⭐ Valores:</strong><br>${(usuarioAtual.valores || []).join(", ")}</div><div class="metric-card"><strong>💛 Gosta:</strong><br>${(usuarioAtual.gostosTexto || "").substring(0, 50)}...</div><div class="metric-card"><strong>🎁 Contribui com:</strong><br>${(usuarioAtual.repertorios || "").substring(0, 50)}...</div>`;
-        document.getElementById("mediationList").innerHTML = `<div class="mediation-panel" style="background:#fff3e0; padding:16px; border-radius:16px;"><strong>Mediações:</strong><br>Realizadas: ${usuarioAtual.mediacoesRealizadas || 0}<br>Sucedidas: ${usuarioAtual.mediacoesSucedidas || 0}</div><button class="btn-primary" style="margin-top:12px; width:100%;" onclick="alert('Mediação solicitada! Um Guardião será designado.')">🕊️ Solicitar Mediação</button>`;
+        document.getElementById("suggestionsList").innerHTML = sugestoes.map(p => `
+            <div class="connection-card" onclick="iniciarChamada(${JSON.stringify(p).replace(/"/g, '&quot;')})">
+                <div><h4>${p.nome}, ${p.idade} anos</h4><div><span class="tag">📍 ${p.cidade}</span><span class="tag">⭐ ${p.reputacao}</span></div></div>
+                <button class="btn-primary">Conectar</button>
+            </div>
+        `).join("");
+        
+        document.getElementById("activeConnectionsList").innerHTML = (usuarioAtual.conexoesAtivas || []).length ? 
+            usuarioAtual.conexoesAtivas.map(c => `
+                <div class="connection-card">
+                    <div><h4>${c.nome}</h4><span class="tag">💬 ${c.conversasCount} conversas</span></div>
+                    <button class="btn-primary" onclick="alert('Reconectar com ${c.nome}')">📞 Reconectar</button>
+                </div>
+            `).join("") : "<div style='text-align:center; padding:20px;'>Nenhuma conexão ativa ainda</div>";
+        
+        document.getElementById("profileStats").innerHTML = `
+            <div class="metric-card"><strong>🧑 ${usuarioAtual.nome}</strong><br>${usuarioAtual.idade || '-'} anos • ${usuarioAtual.localidade}</div>
+            <div class="metric-card"><strong>🎭 Arquétipo:</strong><br>${usuarioAtual.arquetipo}</div>
+            <div class="metric-card"><strong>💼 Profissão:</strong><br>${usuarioAtual.profissao || '-'}</div>
+            <div class="metric-card"><strong>⭐ Valores:</strong><br>${(usuarioAtual.valores || []).slice(0,3).join(", ")}</div>
+            <div class="metric-card"><strong>💛 Gosta de:</strong><br>${(usuarioAtual.gostosTexto || "").substring(0, 50)}...</div>
+            <div class="metric-card"><strong>📖 Quer aprender:</strong><br>${(usuarioAtual.aprenderTexto || "").substring(0, 50)}...</div>
+            <div class="metric-card"><strong>🎁 Contribui com:</strong><br>${(usuarioAtual.repertorios || "").substring(0, 50)}...</div>
+        `;
+        
+        document.getElementById("mediationList").innerHTML = `
+            <div class="mediation-panel"><strong>📊 Mediações:</strong><br>Realizadas: ${usuarioAtual.mediacoesRealizadas || 0}<br>Sucedidas: ${usuarioAtual.mediacoesSucedidas || 0}<br>Taxa: ${usuarioAtual.mediacoesRealizadas > 0 ? ((usuarioAtual.mediacoesSucedidas/usuarioAtual.mediacoesRealizadas)*100).toFixed(0) : 0}%</div>
+            <button class="btn-primary" style="margin-top:12px; width:100%;" onclick="alert('🕊️ Mediação solicitada! Um Guardião será designado em breve.')">➕ Solicitar Mediação Humana</button>
+        `;
     }
-
+    
     // Chamada
     window.iniciarChamada = function(pessoa) {
         chamadaAtual = pessoa;
@@ -704,56 +1169,79 @@
         document.getElementById("postCallPanel").classList.add("hidden");
         document.getElementById("callStatus").innerHTML = "🎥 Chamada em andamento...";
         document.getElementById("endCallBtn").style.display = "block";
-        document.getElementById("roteiroSuggestion").innerHTML = "<strong>📝 Roteiro:</strong> Conte-me sobre algo que você aprendeu recentemente.";
+        document.getElementById("roteiroSuggestion").innerHTML = "<strong>📝 Roteiro sugerido:</strong> Conte-me sobre algo que você aprendeu recentemente que mudou sua visão de mundo.";
         document.getElementById("callModal").classList.add("active");
         if(timerInterval) clearInterval(timerInterval);
         timerInterval = setInterval(() => {
-            if(tempoRestante <= 0) { encerrarChamada(); } else { tempoRestante--; const m = Math.floor(tempoRestante/60), s = tempoRestante%60; document.getElementById("timer").innerHTML = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`; if(tempoRestante === 180) document.getElementById("callStatus").innerHTML = "⏰ 3 minutos restantes!"; }
+            if(tempoRestante <= 0) { encerrarChamada(); } else { 
+                tempoRestante--; 
+                const m = Math.floor(tempoRestante/60), s = tempoRestante%60; 
+                document.getElementById("timer").innerHTML = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`; 
+                if(tempoRestante === 180) document.getElementById("callStatus").innerHTML = "⏰ Aviso: apenas 3 minutos restantes!"; 
+            }
         }, 1000);
     };
-
+    
     function encerrarChamada() {
         if(timerInterval) clearInterval(timerInterval);
-        document.getElementById("callStatus").innerHTML = "📞 Encerrada. Avalie:";
+        document.getElementById("callStatus").innerHTML = "📞 Chamada encerrada. Avalie sua experiência:";
         document.getElementById("endCallBtn").style.display = "none";
         document.getElementById("postCallPanel").classList.remove("hidden");
         notaSelecionada = 0;
         const starsDiv = document.getElementById("ratingStars");
         starsDiv.innerHTML = "";
-        for(let i=1;i<=10;i++) { const star = document.createElement("span"); star.innerHTML = "★"; star.classList.add("star"); star.onclick = (function(v) { return function() { notaSelecionada = v; document.querySelectorAll("#ratingStars .star").forEach(s => s.classList.remove("selected")); for(let j=1;j<=v;j++) document.querySelectorAll("#ratingStars .star")[j-1]?.classList.add("selected"); }; })(i); starsDiv.appendChild(star); }
+        for(let i=1;i<=10;i++) { 
+            const star = document.createElement("span"); 
+            star.innerHTML = "★"; 
+            star.classList.add("star"); 
+            star.onclick = (function(v) { return function() { 
+                notaSelecionada = v; 
+                document.querySelectorAll("#ratingStars .star").forEach(s => s.classList.remove("selected")); 
+                for(let j=1;j<=v;j++) document.querySelectorAll("#ratingStars .star")[j-1]?.classList.add("selected"); 
+            }; })(i); 
+            starsDiv.appendChild(star); 
+        }
+        
         let acceptBtn = document.getElementById("acceptAgain"), rejectBtn = document.getElementById("rejectAgain");
         const newAccept = acceptBtn.cloneNode(true), newReject = rejectBtn.cloneNode(true);
         acceptBtn.parentNode.replaceChild(newAccept, acceptBtn);
         rejectBtn.parentNode.replaceChild(newReject, rejectBtn);
         newAccept.onclick = () => { aceitouNovaInteracao = true; };
         newReject.onclick = () => { aceitouNovaInteracao = false; };
+        
         document.getElementById("submitRating").onclick = () => {
             if(notaSelecionada === 0) { alert("Selecione uma nota"); return; }
             if(aceitouNovaInteracao === null) { alert("Indique se quer nova interação"); return; }
+            
             if(aceitouNovaInteracao) {
                 usuarioAtual.conexoesAtivas.push({ id: chamadaAtual.id, nome: chamadaAtual.nome, conversasCount: 1, ultimaConversa: new Date().toISOString() });
                 usuarioAtual.mediaReciprocidade = (usuarioAtual.mediaReciprocidade * usuarioAtual.conexoesTotal + 1) / (usuarioAtual.conexoesTotal + 1);
-            } else { usuarioAtual.mediaReciprocidade = (usuarioAtual.mediaReciprocidade * usuarioAtual.conexoesTotal + 0) / (usuarioAtual.conexoesTotal + 1); }
+            } else { 
+                usuarioAtual.mediaReciprocidade = (usuarioAtual.mediaReciprocidade * usuarioAtual.conexoesTotal + 0) / (usuarioAtual.conexoesTotal + 1);
+            }
             usuarioAtual.conexoesTotal++;
             usuarioAtual.conversasRealizadas.push({ id: chamadaAtual.id, nome: chamadaAtual.nome, nota: notaSelecionada });
             usuarioAtual.reputacao = (usuarioAtual.reputacao * (usuarioAtual.conexoesTotal - 1) + notaSelecionada) / usuarioAtual.conexoesTotal;
             localStorage.setItem("nexumUserProfile", JSON.stringify(usuarioAtual));
             carregarDashboardDados();
             document.getElementById("callModal").classList.remove("active");
-            alert(`✅ Avaliação: ${notaSelecionada}/10 | Nova interação: ${aceitouNovaInteracao ? "SIM" : "NÃO"}`);
+            alert(`✅ Avaliação enviada! Nota: ${notaSelecionada}/10\nNova interação: ${aceitouNovaInteracao ? "SIM" : "NÃO"}`);
         };
     }
-
+    
+    // Eventos
     document.getElementById("closeModalBtn").onclick = () => document.getElementById("callModal").classList.remove("active");
     document.getElementById("endCallBtn").onclick = encerrarChamada;
-    document.getElementById("startOnboardingBtn").onclick = iniciarOnboarding;
-    document.getElementById("showArchetypesBtn").onclick = () => { document.getElementById("archetypesSection").classList.toggle("hidden"); };
-
+    document.getElementById("startOnboardingBtn").onclick = () => iniciarOnboarding(false);
+    document.getElementById("startDemoOnboardingBtn").onclick = () => iniciarOnboarding(true);
+    document.getElementById("showArchetypesBtn").onclick = () => document.getElementById("archetypesSection").classList.toggle("hidden");
+    
+    // Auto fill dentro do onboarding
+    document.getElementById("autoFillBtn")?.addEventListener("click", preencherAutoFill);
+    
     window.carregarPerfilDemo = carregarPerfilDemo;
-    window.nextStepForm = nextStepForm;
-    window.prevStepForm = prevStepForm;
     window.iniciarChamada = window.iniciarChamada;
-
+    
     if(localStorage.getItem("nexumUserProfile") && !window.location.hash.includes("force")) {
         document.getElementById("entryScreen").style.display = "none";
         renderizarDashboard();
