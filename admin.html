@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Nexum Social · Administração</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fc;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .login-screen {
+            max-width: 450px;
+            margin: 80px auto;
+            background: white;
+            border-radius: 32px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .login-screen .logo-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #2c5f8a, #5b8c5a);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+            margin-bottom: 20px;
+        }
+        .login-screen h2 {
+            color: #1f4e6e;
+            margin-bottom: 24px;
+        }
+        .login-input {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 20px;
+            font-size: 1rem;
+        }
+        .btn-primary {
+            background: #5b8c5a;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .error-msg {
+            color: #e67e22;
+            margin-top: 12px;
+            font-size: 0.85rem;
+        }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(0,0,0,0.1);
+        }
+        .admin-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .admin-logo .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #2c5f8a, #5b8c5a);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: white;
+        }
+        .admin-logo span {
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #2c5f8a, #5b8c5a);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .admin-user {
+            background: #f1f5f9;
+            padding: 8px 20px;
+            border-radius: 40px;
+            color: #1a2c3e;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .role-badge {
+            background: #5b8c5a;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: white;
+        }
+        .role-badge.master { background: #e67e22; }
+        .role-badge.gestor { background: #3498db; }
+        .role-badge.analista { background: #2c5f8a; }
+        .logout-btn {
+            background: #cbd5e1;
+            color: #1a2c3e;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c5f8a;
+        }
+        .stat-label {
+            color: #5a6e7a;
+            margin-top: 6px;
+            font-size: 0.8rem;
+        }
+        .admin-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .admin-tab {
+            background: #f1f5f9;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #1a2c3e;
+            transition: all 0.2s;
+        }
+        .admin-tab.active {
+            background: #5b8c5a;
+            color: white;
+        }
+        .panel {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+        .panel h3 {
+            color: #1f4e6e;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background: #f1f5f9;
+            font-weight: 600;
+            color: #2c5f8a;
+        }
+        .cluster-card {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #5b8c5a;
+            border: 1px solid #e2e8f0;
+        }
+        .cluster-title {
+            font-weight: 700;
+            color: #1f4e6e;
+            margin-bottom: 12px;
+        }
+        .user-tag {
+            background: #e2e8f0;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+        .btn-cluster {
+            background: #2c5f8a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            margin-top: 16px;
+        }
+        .cluster-input {
+            width: 100%;
+            padding: 12px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            font-family: inherit;
+        }
+        .chart-container {
+            margin: 20px 0;
+            padding: 16px;
+            background: #f8fafc;
+            border-radius: 16px;
+        }
+        .peak-hours-container {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin: 20px 0;
+        }
+        .day-column {
+            text-align: center;
+        }
+        .day-name {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #2c5f8a;
+            font-size: 0.8rem;
+        }
+        .hour-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .hour-bar {
+            height: 3px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .hour-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2c5f8a, #5b8c5a);
+            border-radius: 2px;
+        }
+        .peak-stats {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+        .peak-stat-card {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            flex: 1;
+            border: 1px solid #e2e8f0;
+        }
+        .peak-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e67e22;
+        }
+        .realtime-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #2ecc71;
+            border-radius: 50%;
+            margin-right: 6px;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        .hidden {
+            display: none;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #5a6e7a;
+            font-size: 0.75rem;
+        }
+        .tag {
+            background: #e2e8f0;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="app">
+    <div id="loginScreen" class="login-screen">
+        <div class="logo-icon">⟳</div>
+        <h2>Nexum Social<br><span style="font-size:0.9rem; color:#5a6e7a;">Administração</span></h2>
+        <p style="color:#5a6e7a; margin-bottom:20px;">Acesso restrito a administradores</p>
+        <input type="text" id="adminEmail" class="login-input" placeholder="E-mail do administrador">
+        <input type="password" id="adminPassword" class="login-input" placeholder="Senha">
+        <button class="btn-primary" id="loginBtn" style="width:100%; margin-top:16px;">🔐 Entrar</button>
+        <div id="loginError" class="error-msg"></div>
+    </div>
+    <div id="adminDashboard" style="display:none;">
+        <div class="admin-header">
+            <div class="admin-logo"><div class="logo-icon">⟳</div><span>Nexum Social · Administração</span></div>
+            <div style="display:flex; gap:16px; align-items:center;"><div class="admin-user" id="adminNameDisplay"></div><button class="logout-btn" id="logoutBtn">🚪 Sair</button></div>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card"><div class="stat-value" id="totalUsers">0</div><div class="stat-label">Total de Usuários</div></div>
+            <div class="stat-card"><div class="stat-value" id="totalConnections">0</div><div class="stat-label">Conexões Totais</div></div>
+            <div class="stat-card"><div class="stat-value" id="avgReputation">0</div><div class="stat-label">Reputação Média</div></div>
+            <div class="stat-card"><div class="stat-value" id="avgReciprocity">0</div><div class="stat-label">Reciprocidade Média</div></div>
+            <div class="stat-card"><div class="stat-value" id="totalMediations">0</div><div class="stat-label">Mediações Realizadas</div></div>
+            <div class="stat-card"><div class="stat-value" id="successMediations">0</div><div class="stat-label">Mediações Bem-sucedidas</div></div>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card" style="background:linear-gradient(135deg,#e8f0fe,#d4e4f7);"><div class="stat-value" id="peakHourToday">--:--</div><div class="stat-label">🏆 Horário de Pico Hoje</div></div>
+            <div class="stat-card" style="background:linear-gradient(135deg,#e8f0fe,#d4e4f7);"><div class="stat-value" id="peakUsersNow">0</div><div class="stat-label"><span class="realtime-indicator"></span> Usuários Agora</div></div>
+            <div class="stat-card" style="background:linear-gradient(135deg,#e8f0fe,#d4e4f7);"><div class="stat-value" id="peakDayWeek">--</div><div class="stat-label">📅 Dia Mais Movimentado</div></div>
+        </div>
+        <div class="admin-tabs" id="adminTabs"></div>
+        <div id="tabContent"></div>
+        <footer>Nexum Social · Painel Administrativo | Dados atualizados em tempo real</footer>
+    </div>
+</div>
+<script>
+    const administradores = [
+        { email: "admin@nexum.com", senha: "C1p2a3@#", nome: "Administrador Master", role: "master", roleName: "Master", permissoes: { verUsuarios: true, verAnalises: true, verClusters: true, verHorariosPico: true, verMonitoramento: true } },
+        { email: "gestor@nexum.com", senha: "gestor456", nome: "Gestor de Comunidade", role: "gestor", roleName: "Gestor", permissoes: { verUsuarios: true, verAnalises: true, verClusters: true, verHorariosPico: false, verMonitoramento: true } },
+        { email: "analista@nexum.com", senha: "analista789", nome: "Analista de Dados", role: "analista", roleName: "Analista", permissoes: { verUsuarios: false, verAnalises: true, verClusters: true, verHorariosPico: true, verMonitoramento: true } }
+    ];
+    let adminAtual = null;
+    let dadosAtividade = {};
+    let usuarios = [];
+
+    function gerarDadosAtividade() {
+        const dias = ["Segunda","Terça","Quarta","Quinta","Sexta","Sábado","Domingo"];
+        const horas = Array.from({length:24},(_,i)=>i);
+        for(let dia of dias){
+            dadosAtividade[dia]={};
+            for(let hora of horas){
+                let base=10;
+                if(hora===10) base=45;
+                else if(hora===15) base=50;
+                else if(hora===20) base=55;
+                else base=Math.floor(Math.random()*20)+5;
+                if((dia==="Sábado"||dia==="Domingo")&&(hora>=10&&hora<=22)) base+=10;
+                dadosAtividade[dia][hora]=base+Math.floor(Math.random()*15);
+            }
+        }
+    }
+    function gerarDadosDemoUsuarios(){
+        const nomes=["Ana Silva","Bruno Santos","Carla Oliveira","Daniel Costa","Elena Mendes","Felipe Rocha","Gabriela Lima","Henrique Souza","Isabela Ferreira","João Pedro"];
+        const cidades=["São Paulo/SP","Rio de Janeiro/RJ","Belo Horizonte/MG","Porto Alegre/RS","Salvador/BA","Recife/PE","Brasília/DF","Curitiba/PR","Fortaleza/CE","Manaus/AM"];
+        const profissoes=["Tecnologia","Educação","Saúde","Psicologia","Arte/Design","Direito","Marketing"];
+        const arquetipos=["Fantasma","Explorador","Conector","Guardião"];
+        for(let i=0;i<50;i++){
+            const dataCadastro=new Date(Date.now()-Math.random()*180*24*60*60*1000);
+            const conexoes=Math.floor(Math.random()*150);
+            const reputacao=5+(conexoes/150)*5;
+            const reciprocidade=Math.random()*0.9;
+            const mediacoes=Math.floor(Math.random()*30);
+            const mediacoesSucesso=Math.floor(mediacoes*(0.3+Math.random()*0.5));
+            usuarios.push({
+                id:i+1,
+                nome:nomes[i%nomes.length]+(Math.floor(i/nomes.length)>0?` ${Math.floor(i/nomes.length)}` : ""),
+                idade:18+Math.floor(Math.random()*60),
+                localidade:cidades[Math.floor(Math.random()*cidades.length)],
+                profissao:profissoes[Math.floor(Math.random()*profissoes.length)],
+                arquetipo:arquetipos[Math.floor(Math.random()*arquetipos.length)],
+                conexoesTotal:conexoes,
+                reputacao:parseFloat(reputacao.toFixed(1)),
+                mediaReciprocidade:parseFloat(reciprocidade.toFixed(2)),
+                mediacoesRealizadas:mediacoes,
+                mediacoesSucedidas:mediacoesSucesso,
+                dataCadastro:dataCadastro.toISOString(),
+                gostosTexto:`gosta de ${["viajar","ler","cozinhar","meditar","dançar"][Math.floor(Math.random()*5)]}`,
+                aprenderTexto:`quer aprender ${["programação","idiomas","reiki","marcenaria"][Math.floor(Math.random()*4)]}`
+            });
+        }
+        usuarios.sort((a,b)=>new Date(b.dataCadastro)-new Date(a.dataCadastro));
+    }
+    gerarDadosDemoUsuarios();
+    gerarDadosAtividade();
+
+    function calcularHorariosPico(){
+        const dias=["Segunda","Terça","Quarta","Quinta","Sexta","Sábado","Domingo"];
+        const agora=new Date();
+        const horaAtual=agora.getHours();
+        const diasSemana=["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"];
+        const diaNome=diasSemana[agora.getDay()];
+        let usuariosAgora=dadosAtividade[diaNome]?.[horaAtual]||0;
+        let totalPorHora=Array(24).fill(0);
+        let totalPorDia=Array(7).fill(0);
+        for(let i=0;i<dias.length;i++){
+            const dia=dias[i];
+            for(let h=0;h<24;h++){
+                const atividade=dadosAtividade[dia]?.[h]||0;
+                totalPorHora[h]+=atividade;
+                totalPorDia[i]+=atividade;
+            }
+        }
+        const mediaPorHora=totalPorHora.map(t=>t/7);
+        const horasPico=mediaPorHora.map((m,idx)=>({hora:idx,media:m})).sort((a,b)=>b.media-a.media);
+        const melhorHorarioGeral=horasPico[0];
+        const melhorHorarioFormatado=`${melhorHorarioGeral.hora.toString().padStart(2,'0')}:00`;
+        const diaPicoIndex=totalPorDia.indexOf(Math.max(...totalPorDia));
+        const diaPico=dias[diaPicoIndex];
+        return{melhorHorario:melhorHorarioFormatado,usuariosAgora:usuariosAgora,diaPico:diaPico};
+    }
+
+    function fazerLogin(){
+        const email=document.getElementById("adminEmail").value.trim();
+        const senha=document.getElementById("adminPassword").value;
+        const admin=administradores.find(a=>a.email===email&&a.senha===senha);
+        if(admin){
+            adminAtual=admin;
+            document.getElementById("loginScreen").style.display="none";
+            document.getElementById("adminDashboard").style.display="block";
+            let roleClass="";
+            if(admin.role==="master") roleClass="master";
+            else if(admin.role==="gestor") roleClass="gestor";
+            else roleClass="analista";
+            document.getElementById("adminNameDisplay").innerHTML=`<span>👑 ${admin.nome}</span><span class="role-badge ${roleClass}">${admin.roleName}</span>`;
+            carregarDashboard();
+        } else {
+            document.getElementById("loginError").innerHTML="❌ E-mail ou senha inválidos. Acesso negado.";
+        }
+    }
+
+    function logout() {
+        adminAtual=null;
+        document.getElementById("adminDashboard").style.display="none";
+        document.getElementById("loginScreen").style.display="block";
+        document.getElementById("adminEmail").value="";
+        document.getElementById("adminPassword").value="";
+        document.getElementById("loginError").innerHTML="";
+        window.parent.postMessage("adminLogout","*");
+    }
+
+    function carregarDashboard(){ atualizarCards(); renderizarTabs(); }
+    function atualizarCards(){
+        const totalUsers=usuarios.length;
+        const totalConnections=usuarios.reduce((sum,u)=>sum+u.conexoesTotal,0);
+        const avgReputation=(usuarios.reduce((sum,u)=>sum+u.reputacao,0)/totalUsers).toFixed(1);
+        const avgReciprocity=(usuarios.reduce((sum,u)=>sum+u.mediaReciprocidade,0)/totalUsers).toFixed(2);
+        const totalMediations=usuarios.reduce((sum,u)=>sum+u.mediacoesRealizadas,0);
+        const successMediations=usuarios.reduce((sum,u)=>sum+u.mediacoesSucedidas,0);
+        document.getElementById("totalUsers").innerHTML=totalUsers;
+        document.getElementById("totalConnections").innerHTML=totalConnections;
+        document.getElementById("avgReputation").innerHTML=avgReputation;
+        document.getElementById("avgReciprocity").innerHTML=avgReciprocity;
+        document.getElementById("totalMediations").innerHTML=totalMediations;
+        document.getElementById("successMediations").innerHTML=successMediations;
+        const picos=calcularHorariosPico();
+        document.getElementById("peakHourToday").innerHTML=picos.melhorHorario;
+        document.getElementById("peakUsersNow").innerHTML=picos.usuariosAgora;
+        document.getElementById("peakDayWeek").innerHTML=picos.diaPico;
+    }
+    function renderizarTabs(){
+        const tabsContainer=document.getElementById("adminTabs");
+        const tabContent=document.getElementById("tabContent");
+        const permissoes=adminAtual.permissoes;
+        let tabsHtml='', contentHtml='';
+        if(permissoes.verUsuarios){
+            tabsHtml+=`<button class="admin-tab active" data-tab="users">👥 Usuários</button>`;
+            contentHtml+=`<div id="usersTab" class="tab-content"><div class="panel"><h3>📋 Lista de Usuários</h3><div class="table-container"><table><thead>汽<th>Nome</th><th>Idade</th><th>Localidade</th><th>Arquétipo</th><th>Conexões</th><th>Reputação</th><th>Mediações</th></tr></thead><tbody id="usersTableBody"></tbody></table></div></div></div>`;
+        }
+        if(permissoes.verAnalises){
+            tabsHtml+=`<button class="admin-tab" data-tab="analytics">📊 Análises</button>`;
+            contentHtml+=`<div id="analyticsTab" class="tab-content hidden"><div class="panel"><h3>📊 Distribuição por Arquétipo</h3><div id="archetypeChart"></div></div><div class="panel"><h3>📈 Evolução de Conexões</h3><div id="connectionsChart"></div></div><div class="panel"><h3>🌍 Usuários por Localidade</h3><div id="locationChart"></div></div></div>`;
+        }
+        if(permissoes.verClusters){
+            tabsHtml+=`<button class="admin-tab" data-tab="clusters">🔍 Clusters</button>`;
+            contentHtml+=`<div id="clustersTab" class="tab-content hidden"><div class="panel"><h3>🔍 Análise de Clusters</h3><input type="text" id="clusterQuery" class="cluster-input" placeholder="Digite um termo para análise..."><button id="analyzeClusterBtn" class="btn-cluster">🔎 Analisar Cluster</button><div id="clusterResults" style="margin-top:24px;"></div></div><div class="panel"><h3>📊 Clusters Automáticos</h3><div id="autoClusters"></div></div></div>`;
+        }
+        if(permissoes.verHorariosPico){
+            tabsHtml+=`<button class="admin-tab" data-tab="peak">⏰ Horários de Pico</button>`;
+            contentHtml+=`<div id="peakTab" class="tab-content hidden"><div class="panel"><h3>⏰ Análise de Horários de Pico</h3><div id="peakHeatmap" class="chart-container"></div><div class="peak-stats"><div class="peak-stat-card"><div class="peak-value" id="peakHourTodayDisplay">--:--</div><div class="peak-label">🏆 Horário de Pico</div></div><div class="peak-stat-card"><div class="peak-value" id="peakUsersNowDisplay">0</div><div class="peak-label">👥 Usuários agora</div></div><div class="peak-stat-card"><div class="peak-value" id="peakDayWeekDisplay">--</div><div class="peak-label">📅 Dia mais movimentado</div></div></div></div></div>`;
+        }
+        if(permissoes.verMonitoramento){
+            tabsHtml+=`<button class="admin-tab" data-tab="monitoring">📈 Monitoramento</button>`;
+            contentHtml+=`<div id="monitoringTab" class="tab-content hidden"><div class="panel"><h3>📡 Monitoramento em Tempo Real</h3><div id="monitoringInfo"></div></div></div>`;
+        }
+        tabsContainer.innerHTML=tabsHtml;
+        tabContent.innerHTML=contentHtml;
+        if(permissoes.verUsuarios) atualizarTabelaUsuarios();
+        if(permissoes.verAnalises) atualizarGraficos();
+        if(permissoes.verClusters){ atualizarClustersAutomaticos(); document.getElementById("analyzeClusterBtn").onclick=analisarCluster; }
+        if(permissoes.verHorariosPico) renderizarHeatmap();
+        if(permissoes.verMonitoramento) atualizarMonitoramento();
+        document.querySelectorAll(".admin-tab").forEach(tab=>{
+            tab.onclick=()=>{
+                document.querySelectorAll(".admin-tab").forEach(t=>t.classList.remove("active"));
+                tab.classList.add("active");
+                const tabName=tab.dataset.tab;
+                document.querySelectorAll(".tab-content").forEach(t=>t.classList.add("hidden"));
+                document.getElementById(tabName+"Tab").classList.remove("hidden");
+                if(tabName==="peak") renderizarHeatmap();
+                if(tabName==="analytics") atualizarGraficos();
+                if(tabName==="clusters") atualizarClustersAutomaticos();
+                if(tabName==="monitoring") atualizarMonitoramento();
+            };
+        });
+    }
+    function renderizarHeatmap(){
+        const dias=["Segunda","Terça","Quarta","Quinta","Sexta","Sábado","Domingo"];
+        const horas=Array.from({length:24},(_,i)=>i);
+        let maxAtividade=0;
+        for(let dia of dias) for(let h of horas) maxAtividade=Math.max(maxAtividade,dadosAtividade[dia]?.[h]||0);
+        let html=`<div class="peak-hours-container">`;
+        for(let dia of dias){
+            html+=`<div class="day-column"><div class="day-name">${dia.substring(0,3)}</div><div class="hour-bars">`;
+            for(let h of horas){
+                const atividade=dadosAtividade[dia]?.[h]||0;
+                const percent=(atividade/maxAtividade)*100;
+                html+=`<div class="hour-bar" title="${dia} ${h}:00 - ${atividade} usuários"><div class="hour-fill" style="width:${percent}%;"></div></div>`;
+            }
+            html+=`</div></div>`;
+        }
+        html+=`</div>`;
+        document.getElementById("peakHeatmap").innerHTML=html;
+        const picos=calcularHorariosPico();
+        document.getElementById("peakHourTodayDisplay").innerHTML=picos.melhorHorario;
+        document.getElementById("peakUsersNowDisplay").innerHTML=picos.usuariosAgora;
+        document.getElementById("peakDayWeekDisplay").innerHTML=picos.diaPico;
+    }
+    function atualizarTabelaUsuarios(){
+        const tbody=document.getElementById("usersTableBody");
+        if(tbody){
+            tbody.innerHTML=usuarios.map(u=>`<tr><td>${u.nome}</td><td>${u.idade}</td><td>${u.localidade}</td><td><span class="tag">${u.arquetipo}</span></td><td>${u.conexoesTotal}</td><td>⭐ ${u.reputacao}</td><td>${u.mediacoesRealizadas} (${u.mediacoesSucedidas} OK)</td></tr>`).join("");
+        }
+    }
+    function atualizarGraficos(){
+        const archetypeCount={Fantasma:0,Explorador:0,Conector:0,Guardião:0};
+        usuarios.forEach(u=>archetypeCount[u.arquetipo]++);
+        const total=usuarios.length;
+        let archetypeHtml='<div class="chart-container">';
+        for(const[arq,count]of Object.entries(archetypeCount)){
+            const percent=(count/total*100).toFixed(1);
+            archetypeHtml+=`<div style="margin:8px 0;"><strong>${arq}:</strong> ${count} (${percent}%)</div>`;
+        }
+        archetypeHtml+='</div>';
+        const archetypeDiv=document.getElementById("archetypeChart");
+        if(archetypeDiv) archetypeDiv.innerHTML=archetypeHtml;
+        const locationCount={};
+        usuarios.forEach(u=>locationCount[u.localidade]=(locationCount[u.localidade]||0)+1);
+        const sortedLocations=Object.entries(locationCount).sort((a,b)=>b[1]-a[1]).slice(0,5);
+        let locationHtml='<div class="chart-container">';
+        sortedLocations.forEach(([city,count])=>{locationHtml+=`<div><strong>${city}:</strong> ${count} usuários</div>`;});
+        locationHtml+='</div>';
+        const locationDiv=document.getElementById("locationChart");
+        if(locationDiv) locationDiv.innerHTML=locationHtml;
+        const connectionsDiv=document.getElementById("connectionsChart");
+        if(connectionsDiv) connectionsDiv.innerHTML=`<div class="chart-container"><strong>Total de conexões:</strong> ${usuarios.reduce((s,u)=>s+u.conexoesTotal,0)}</div>`;
+    }
+    function atualizarClustersAutomaticos(){
+        const clusters={
+            "Fantasma": usuarios.filter(u=>u.arquetipo==="Fantasma").slice(0,5),
+            "Explorador": usuarios.filter(u=>u.arquetipo==="Explorador").slice(0,5),
+            "Conector": usuarios.filter(u=>u.arquetipo==="Conector").slice(0,5),
+            "Guardião": usuarios.filter(u=>u.arquetipo==="Guardião").slice(0,5)
+        };
+        let autoHtml='<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:16px;">';
+        for(const[arq,users]of Object.entries(clusters)){
+            if(users.length>0){
+                autoHtml+=`<div class="cluster-card"><div class="cluster-title">🎭 ${arq}</div><div class="cluster-users">${users.map(u=>`<span class="user-tag">${u.nome} (${u.conexoesTotal} conexões)</span>`).join("")}</div></div>`;
+            }
+        }
+        autoHtml+='</div>';
+        const autoDiv=document.getElementById("autoClusters");
+        if(autoDiv) autoDiv.innerHTML=autoHtml;
+    }
+    function analisarCluster(){
+        const query=document.getElementById("clusterQuery").value.toLowerCase().trim();
+        if(!query){ alert("Digite um termo para análise"); return; }
+        const resultados=usuarios.filter(u=>u.nome.toLowerCase().includes(query)||u.localidade.toLowerCase().includes(query)||u.profissao.toLowerCase().includes(query)||u.arquetipo.toLowerCase().includes(query));
+        const clusterDiv=document.getElementById("clusterResults");
+        if(resultados.length===0){
+            clusterDiv.innerHTML=`<div class="cluster-card"><div class="cluster-title">🔍 Nenhum resultado para "${query}"</div></div>`;
+        }else{
+            clusterDiv.innerHTML=`<div class="cluster-card"><div class="cluster-title">📊 Cluster: "${query}" (${resultados.length} usuários)</div><div class="cluster-users">${resultados.map(u=>`<span class="user-tag">${u.nome} (${u.idade} anos, ${u.arquetipo})</span>`).join("")}</div></div>`;
+        }
+    }
+    function atualizarMonitoramento(){
+        const mediaConexoes=(usuarios.reduce((s,u)=>s+u.conexoesTotal,0)/usuarios.length).toFixed(1);
+        const arqMaisComum=Object.entries(usuarios.reduce((acc,u)=>{acc[u.arquetipo]=(acc[u.arquetipo]||0)+1; return acc;},{})).sort((a,b)=>b[1]-a[1])[0]?.[0]||"Fantasma";
+        const cidadeMaisComum=Object.entries(usuarios.reduce((acc,u)=>{acc[u.localidade]=(acc[u.localidade]||0)+1; return acc;},{})).sort((a,b)=>b[1]-a[1])[0]?.[0]||"-";
+        const taxaSucesso=((usuarios.reduce((s,u)=>s+u.mediacoesSucedidas,0)/(usuarios.reduce((s,u)=>s+u.mediacoesRealizadas,0)||1))*100).toFixed(1);
+        const infoDiv=document.getElementById("monitoringInfo");
+        if(infoDiv){
+            infoDiv.innerHTML=`<div class="stats-grid" style="grid-template-columns: repeat(3,1fr); margin-bottom:0;"><div class="stat-card"><div class="stat-value" style="color:#2c5f8a;">${usuarios.length}</div><div class="stat-label">Total usuários</div></div><div class="stat-card"><div class="stat-value" style="color:#2c5f8a;">${mediaConexoes}</div><div class="stat-label">Média conexões</div></div><div class="stat-card"><div class="stat-value" style="color:#2c5f8a;">${taxaSucesso}%</div><div class="stat-label">Sucesso mediação</div></div></div><div style="margin-top:20px; padding:16px; background:#e8f0fe; border-radius:16px;"><strong>📈 Resumo da plataforma:</strong><br>• Arquétipo mais comum: ${arqMaisComum}<br>• Cidade com mais usuários: ${cidadeMaisComum}</div>`;
+        }
+    }
+
+    document.getElementById("loginBtn").onclick=fazerLogin;
+    document.getElementById("logoutBtn").onclick=logout;
+    document.getElementById("adminPassword").addEventListener("keypress",(e)=>{ if(e.key==="Enter") fazerLogin(); });
+    console.log("✅ Painel Administrativo do Nexum Social carregado");
+    console.log("📋 Credenciais: admin@nexum.com / C1p2a3@# (Master), gestor@nexum.com / gestor456, analista@nexum.com / analista789");
+</script>
+</body>
+</html>

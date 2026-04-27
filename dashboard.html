@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Nexum Social · Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#f0f4f8 0%,#e2e8f2 100%);min-height:100vh;padding:20px;}
+        .container{max-width:1400px;margin:0 auto;}
+        .logo-icon{width:50px;height:50px;background:linear-gradient(135deg,#2c5f8a,#5b8c5a);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:24px;color:white;}
+        .logo-text{font-size:1.5rem;font-weight:700;background:linear-gradient(135deg,#2c5f8a,#5b8c5a);background-clip:text;-webkit-background-clip:text;color:transparent;}
+        .card{background:white;border-radius:24px;padding:24px;margin-bottom:24px;box-shadow:0 4px 12px rgba(0,0,0,0.06);}
+        .dashboard-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:24px;padding-bottom:16px;border-bottom:2px solid rgba(44,95,138,0.2);}
+        .user-card{background:white;padding:8px 20px;border-radius:60px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+        .archetype-badge{background:#2c5f8a;color:white;padding:4px 14px;border-radius:40px;font-weight:600;font-size:0.8rem;}
+        .reputation-badge{background:#ffd966;padding:4px 12px;border-radius:40px;font-weight:700;font-size:0.8rem;}
+        .btn-logout{background:#e67e22;color:white;border:none;padding:8px 20px;border-radius:40px;font-weight:600;cursor:pointer;font-size:0.85rem;transition:all 0.2s;}
+        .btn-logout:hover{background:#c0392b;}
+        .nav-tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
+        .nav-tab{background:white;border:none;padding:10px 20px;border-radius:40px;cursor:pointer;font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,0.1);}
+        .nav-tab.active{background:#2c5f8a;color:white;}
+        .dashboard-grid{display:grid;grid-template-columns:1fr 340px;gap:24px;}
+        @media (max-width:900px){.dashboard-grid{grid-template-columns:1fr;}}
+        .btn-primary{background:#5b8c5a;color:white;border:none;padding:10px 20px;border-radius:40px;font-weight:600;cursor:pointer;font-size:0.85rem;}
+        .btn-secondary{background:#cbd5e1;color:#1a2c3e;border:none;padding:10px 20px;border-radius:40px;font-weight:500;cursor:pointer;font-size:0.85rem;}
+        .btn-warning{background:#f39c12;color:white;border:none;padding:10px 20px;border-radius:40px;font-weight:600;cursor:pointer;font-size:0.85rem;}
+        .btn-danger{background:#e67e22;color:white;border:none;padding:10px 20px;border-radius:40px;font-weight:600;cursor:pointer;font-size:0.85rem;}
+        .modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);z-index:1000;align-items:center;justify-content:center;}
+        .modal.active{display:flex;}
+        .modal-content{background:white;border-radius:28px;padding:28px;max-width:600px;width:90%;max-height:85vh;overflow-y:auto;text-align:center;position:relative;}
+        .modal-close{position:absolute;top:16px;right:20px;font-size:24px;cursor:pointer;color:#999;}
+        .modal-close:hover{color:#333;}
+        .form-group{margin-bottom:20px;text-align:left;}
+        label{font-weight:600;display:block;margin-bottom:6px;color:#2c5f8a;font-size:0.85rem;}
+        input,select,textarea{width:100%;padding:10px 14px;border:1.5px solid #e2e8f0;border-radius:16px;font-family:inherit;font-size:0.9rem;}
+        textarea{resize:vertical;}
+        .btn-group{display:flex;gap:12px;justify-content:center;margin-top:16px;}
+        .modal-buttons{display:flex;gap:12px;justify-content:center;margin-top:24px;}
+        .modal-buttons button{flex:1;}
+        .chat-messages{height:300px;overflow-y:auto;background:#f8fafc;border-radius:16px;padding:12px;margin:16px 0;text-align:left;}
+        .message{margin-bottom:12px;padding:8px 12px;border-radius:16px;max-width:80%;}
+        .message.user{background:#2c5f8a;color:white;margin-left:auto;text-align:right;}
+        .message.other{background:#e2e8f0;color:#1a2c3e;}
+        .chat-input{display:flex;gap:8px;margin-top:12px;}
+        .chat-input input{flex:1;padding:10px;border:1px solid #cbd5e1;border-radius:40px;}
+        .metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+        .metric-card{background:#f1f5f9;border-radius:16px;padding:10px;text-align:center;}
+        .metric-value{font-size:1.4rem;font-weight:800;color:#2c5f8a;}
+        .badges-list{display:flex;flex-wrap:wrap;gap:8px;}
+        .tag{background:#e2e8f0;padding:3px 10px;border-radius:20px;font-size:0.7rem;font-weight:500;}
+        .connections-list{display:flex;flex-direction:column;gap:12px;}
+        .connection-card{background:#f8fafc;border-radius:20px;padding:16px;border:1px solid #e2e8f0;}
+        .connection-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px;}
+        .connection-name{font-weight:700;font-size:1rem;color:#1f4e6e;}
+        .hidden{display:none;}
+        .mode-info{background:#e8f0fe;padding:12px;border-radius:12px;font-size:0.75rem;margin-top:12px;}
+        .rating-stars{display:flex;gap:8px;justify-content:center;margin:12px 0;}
+        .rating-stars span{font-size:1.8rem;cursor:pointer;color:#cbd5e1;}
+        .rating-stars span.selected{color:#ffc107;}
+    </style>
+</head>
+<body>
+<div class="container" id="dashboardScreen">
+    <div class="dashboard-header">
+        <div style="display:flex; align-items:center; gap:12px;"><div class="logo-icon">⟳</div><div class="logo-text">Nexum Social</div></div>
+        <div style="display:flex; gap:12px; align-items:center;">
+            <div class="user-card"><span id="dashboardUserName"></span><span class="archetype-badge" id="dashboardArchetype"></span><span class="reputation-badge" id="dashboardReputation"></span></div>
+            <button class="btn-logout" id="logoutDashboardBtn">🚪 Sair da conta</button>
+        </div>
+    </div>
+    <div class="review-banner" id="reviewBanner" style="display: none;">
+        <div><strong>🔄 Hora de revisar seu perfil!</strong><br><span style="font-size: 0.8rem;">Já faz algum tempo desde que você se cadastrou. Pessoas mudam, e suas respostas também podem ter mudado.</span></div>
+        <button class="btn-primary" id="reviewNowBtn">📝 Revisar agora</button>
+    </div>
+    <div class="nav-tabs">
+        <button class="nav-tab active" data-tab="discover">🔍 Descobrir</button>
+        <button class="nav-tab" data-tab="connections">💬 Conexões</button>
+        <button class="nav-tab" data-tab="profile">📊 Perfil</button>
+        <button class="nav-tab" data-tab="evolution">📈 Minha Evolução</button>
+    </div>
+    <div class="dashboard-grid">
+        <div id="mainContent">
+            <div id="discoverTab" class="tab-content"><div class="card"><div style="font-weight:700; margin-bottom:16px;">🎯 Para você hoje</div><div id="suggestionsList" class="connections-list"></div></div></div>
+            <div id="connectionsTab" class="tab-content hidden"><div class="card"><div style="font-weight:700; margin-bottom:16px;">💬 Suas Conexões</div><div id="activeConnectionsList" class="connections-list"></div></div></div>
+            <div id="profileTab" class="tab-content hidden"><div class="card"><div style="font-weight:700; margin-bottom:16px;">📊 Assinatura Relacional</div><div id="profileStats"></div><button class="btn-warning" id="editProfileBtn" style="margin-top:20px; width:100%;">✏️ Editar Perfil</button></div></div>
+            <div id="evolutionTab" class="tab-content hidden"><div class="card"><div style="font-weight:700; margin-bottom:16px;">📈 Minha Evolução</div><div id="evolutionStats"></div></div></div>
+        </div>
+        <div>
+            <div class="card"><div style="font-weight:700; margin-bottom:16px;">📈 Estatísticas</div><div class="metrics-grid" id="statsGrid"></div><div id="pontesNaturais"></div></div>
+            <div class="card"><div style="font-weight:700; margin-bottom:16px;">🏆 Badges</div><div class="badges-list" id="badgesList"></div></div>
+            <div class="card"><div style="font-weight:700; margin-bottom:16px;">🎮 Controle do Algoritmo</div><select id="discoveryMode" style="width:100%; padding:10px; border-radius:40px; margin-bottom:12px;"><option value="expandir">🌍 Expandir Horizontes</option><option value="aprofundar">💞 Aprofundar Conexões</option><option value="aleatorio">🎲 Exploração Livre</option></select><div id="modeDescription" class="mode-info"></div><div id="exploracaoInput" class="hidden" style="margin-top:12px;"><textarea id="buscaTexto" rows="2" placeholder="Ex: Quero conhecer pessoas que trabalham com psicologia..."></textarea><button id="buscarBtn" class="btn-primary" style="margin-top:8px; width:100%;">🔍 Buscar</button></div></div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DE ESCOLHA DE CONEXÃO (somente chat) -->
+<div id="connectModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" id="closeConnectModal">&times;</span>
+        <h3 id="connectPersonName" style="color: #1f4e6e;">Conectar com</h3>
+        <p style="margin: 8px 0 16px; color: #5a6e7a;">Escolha como deseja se conectar:</p>
+        <div class="btn-group">
+            <button id="chatOptionBtn" class="btn-primary" style="flex:1;">💬 Chat (texto)</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DE CHAT -->
+<div id="chatModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" id="closeChatModal">&times;</span>
+        <h3 id="chatPartnerName">Conversa com</h3>
+        <div style="margin: 12px 0; font-size: 0.8rem; color: #5a6e7a;">💬 Conversa sem limite de tempo</div>
+        <div id="chatRoteiro" style="background:#e8f0fe; padding:12px; border-radius:16px; margin:12px 0; font-size:0.85rem;"></div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Digite sua mensagem...">
+            <button class="btn-primary" id="sendChatBtn">Enviar</button>
+        </div>
+        <button class="btn-secondary" id="endChatBtn" style="margin-top: 12px; width:100%;">Encerrar Conversa</button>
+        <button class="btn-warning" id="mediacaoChatBtn" style="margin-top: 8px; width:100%;">🕊️ Solicitar Mediação IA</button>
+        <div id="postChatPanel" class="hidden">
+            <p style="font-weight: 600; margin-top: 16px;">Deseja uma nova interação com esta pessoa?</p>
+            <div class="btn-group">
+                <button id="chatAcceptAgain" class="btn-primary">✅ Sim</button>
+                <button id="chatRejectAgain" class="btn-secondary">❌ Não</button>
+            </div>
+            <p style="margin-top: 16px;">Dê uma nota para esta pessoa (0-10):</p>
+            <div class="rating-stars" id="chatRatingStars"></div>
+            <button id="chatSubmitRating" class="btn-primary" style="margin-top: 16px;">📨 Enviar avaliação</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DE EDIÇÃO DE PERFIL -->
+<div id="editProfileModal" class="modal">
+    <div class="modal-content" style="max-width: 700px;">
+        <span class="modal-close" id="closeEditModal">&times;</span>
+        <h3 style="margin-bottom: 24px; color: #1f4e6e;">✏️ Editar Perfil</h3>
+        <p style="margin-bottom: 16px; font-size: 0.85rem; color: #5a6e7a;">Pessoas mudam! Atualize suas informações abaixo. As alterações serão registradas na sua linha do tempo.</p>
+        <div class="form-group"><label>📌 Área de atuação profissional</label><input type="text" id="editAreaAtuacao" placeholder="Ex: Tecnologia, Educação, Saúde..."></div>
+        <div class="form-group"><label>🎯 Fase atual da carreira</label><select id="editFaseAtual"><option value="Estudante">📚 Estudante</option><option value="Início de carreira">🌱 Início de carreira</option><option value="Profissional experiente">💼 Profissional experiente</option><option value="Empreendedor">🚀 Empreendedor</option><option value="Em transição">🔄 Em transição</option><option value="Aposentado / mentor">👴 Aposentado / mentor</option></select></div>
+        <div class="form-group"><label>🙏 Religião / Espiritualidade</label><input type="text" id="editReligiao" placeholder="Sua religião ou espiritualidade"></div>
+        <div class="form-group"><label>🗳️ Posição política</label><input type="text" id="editPosicaoPolitica" placeholder="Sua visão política"></div>
+        <div class="form-group"><label>⚽ Time de futebol favorito</label><input type="text" id="editTimeFutebol" placeholder="Seu time do coração"></div>
+        <div class="form-group"><label>⭐ Valores fundamentais</label><input type="text" id="editValores" placeholder="Ex: Empatia, Justiça, Liberdade..."></div>
+        <div class="form-group"><label>💛 Coisas que você gosta de fazer</label><textarea rows="2" id="editGostosTexto" placeholder="Seus hobbies e paixões"></textarea></div>
+        <div class="form-group"><label>📖 Coisas que você gostaria de aprender</label><textarea rows="2" id="editAprenderTexto" placeholder="O que você quer aprender"></textarea></div>
+        <div class="form-group"><label>🔄 Crenças em transformação</label><textarea rows="2" id="editCrencasTransformacao" placeholder="O que você está repensando?"></textarea></div>
+        <div class="form-group"><label>❓ Dúvidas abertas</label><textarea rows="2" id="editDuvidasAbertas" placeholder="O que você quer entender melhor?"></textarea></div>
+        <div class="form-group"><label>⚡ Experiências de virada</label><textarea rows="2" id="editExperienciasVirada" placeholder="Transições que marcaram sua vida"></textarea></div>
+        <div class="modal-buttons"><button class="btn-primary" id="saveProfileChanges">💾 Salvar alterações</button><button class="btn-danger" id="cancelEditBtn">❌ Cancelar</button></div>
+    </div>
+</div>
+
+<script>
+    // Dados de pessoas para sugestões
+    const pessoasSugestoes = [
+        { id: 1, nome: "Ana Silva", idade: 28, cidade: "Rio de Janeiro", profissao: "Psicologia", reputacao: 8.5, religiao: "Espiritualista", politica: "Centro-esquerda" },
+        { id: 2, nome: "Carlos Mendes", idade: 45, cidade: "Porto Alegre", profissao: "Educação", reputacao: 9.2, religiao: "Católica", politica: "Centro" },
+        { id: 3, nome: "Fernanda Lima", idade: 34, cidade: "Salvador", profissao: "Arte/Design", reputacao: 8.9, religiao: "Candomblé", politica: "Esquerda" },
+        { id: 4, nome: "Roberto Alves", idade: 52, cidade: "São Paulo", profissao: "Direito", reputacao: 7.8, religiao: "Ateu", politica: "Direita" },
+        { id: 5, nome: "Mariana Brito", idade: 29, cidade: "Belo Horizonte", profissao: "Saúde", reputacao: 9.1, religiao: "Budista", politica: "Centro" }
+    ];
+
+    let usuarioAtual = null;
+    let chatAtual = null;
+    let aceitouNovaInteracao = null;
+    let notaSelecionada = 0;
+    let chatMessages = [];
+
+    const roteiros = [
+        "Conte-me sobre algo que você aprendeu recentemente que mudou sua visão de mundo.",
+        "O que te motivou a escolher sua profissão atual?",
+        "Qual foi a experiência mais transformadora da sua vida?",
+        "Se você pudesse aprender qualquer coisa agora, o que seria?",
+        "O que te trouxe até o Nexum Social hoje?"
+    ];
+
+    // Carregar perfil
+    function carregarPerfil() {
+        const stored = localStorage.getItem("nexumUserProfile");
+        if(stored) {
+            usuarioAtual = JSON.parse(stored);
+            if(!usuarioAtual.timeline) usuarioAtual.timeline = [];
+            if(!usuarioAtual.ultimaRevisao) usuarioAtual.ultimaRevisao = usuarioAtual.dataCadastro || new Date().toISOString();
+        } else {
+            usuarioAtual = {
+                nome: "Alex Andrade", idade: 32, localidade: "São Paulo, SP, Brasil",
+                areaAtuacao: "Tecnologia", faseAtual: "Profissional experiente",
+                religiao: "Espiritualista", posicaoPolitica: "Centro-esquerda", timeFutebol: "Corinthians",
+                valores: "Empatia, Aprendizado, Criatividade",
+                gostosTexto: "Viajar, ler, meditar, cozinhar", aprenderTexto: "Programação, italiano, Reiki",
+                crencasTransformacao: "Repensando minha relação com o tempo", duvidasAbertas: "Como construir comunidades resilientes?",
+                experienciasVirada: "Viagem de mochilão pela América do Sul",
+                arquetipo: "Explorador", reputacao: 8.5, conexoesTotal: 47, mediaReciprocidade: 0.72,
+                diversidadeCognitiva: 0.78, pontosCegos: 3, diferencasIrreconciliaveis: 2, diferencasResolvidas: 5,
+                conexoesAtivas: [{ id: 1, nome: "Ana Silva", conversasCount: 3 }],
+                conversasRealizadas: [{ id: 1, nome: "Ana Silva", data: new Date().toISOString(), nota: 8 }],
+                mediacoesRealizadas: 8, mediacoesSucedidas: 6,
+                dataCadastro: new Date(Date.now() - 100 * 24 * 60 * 60 * 1000).toISOString(),
+                ultimaRevisao: new Date(Date.now() - 100 * 24 * 60 * 60 * 1000).toISOString(),
+                timeline: [{ data: new Date().toISOString(), campo: "cadastro", valorAnterior: null, valorNovo: "Perfil criado" }]
+            };
+        }
+        atualizarUI();
+    }
+
+    let pessoaParaConectar = null;
+
+    function abrirOpcoesConexao(pessoa) {
+        pessoaParaConectar = pessoa;
+        document.getElementById("connectPersonName").innerHTML = `Conectar com <strong>${pessoa.nome}</strong>`;
+        document.getElementById("connectModal").classList.add("active");
+    }
+
+    // ==================== CHAT ====================
+    function iniciarChat() {
+        document.getElementById("connectModal").classList.remove("active");
+        chatAtual = pessoaParaConectar;
+        chatMessages = [];
+        aceitouNovaInteracao = null;
+        notaSelecionada = 0;
+        document.getElementById("chatPartnerName").innerHTML = `💬 Conversa com ${chatAtual.nome}`;
+        document.getElementById("postChatPanel").classList.add("hidden");
+        document.getElementById("chatMessages").innerHTML = "";
+        document.getElementById("endChatBtn").style.display = "block";
+        document.getElementById("mediacaoChatBtn").style.display = "block";
+        document.getElementById("chatRoteiro").innerHTML = `<strong>📝 Roteiro sugerido:</strong> ${roteiros[Math.floor(Math.random() * roteiros.length)]}`;
+        document.getElementById("chatModal").classList.add("active");
+        setTimeout(() => {
+            chatMessages.push({ text: `Olá! Prazer em conhecê-lo(a)! Como você está?`, sender: "other" });
+            renderizarChat();
+        }, 500);
+    }
+
+    function renderizarChat() {
+        const container = document.getElementById("chatMessages");
+        container.innerHTML = chatMessages.map(m => `<div class="message ${m.sender}">${m.text}</div>`).join("");
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function enviarMensagemChat() {
+        const input = document.getElementById("chatInput");
+        const msg = input.value.trim();
+        if(!msg) return;
+        chatMessages.push({ text: msg, sender: "user" });
+        renderizarChat();
+        input.value = "";
+        setTimeout(() => {
+            const respostas = [
+                `Que interessante! Conte-me mais sobre isso.`,
+                `Nossa, nunca pensei por esse ângulo. O que te levou a pensar assim?`,
+                `Isso ressoa muito comigo. Como foi sua experiência?`,
+                `Legal! O que mais você gostaria de compartilhar?`
+            ];
+            chatMessages.push({ text: respostas[Math.floor(Math.random() * respostas.length)], sender: "other" });
+            renderizarChat();
+        }, 1000);
+    }
+
+    function encerrarChat() {
+        document.getElementById("endChatBtn").style.display = "none";
+        document.getElementById("mediacaoChatBtn").style.display = "none";
+        document.getElementById("postChatPanel").classList.remove("hidden");
+        notaSelecionada = 0;
+        const starsDiv = document.getElementById("chatRatingStars");
+        starsDiv.innerHTML = "";
+        for(let i=1;i<=10;i++) {
+            let star = document.createElement("span");
+            star.innerHTML = "★";
+            star.onclick = (function(v) { return function() {
+                notaSelecionada = v;
+                document.querySelectorAll("#chatRatingStars span").forEach(s => s.classList.remove("selected"));
+                for(let j=1;j<=v;j++) {
+                    document.querySelectorAll("#chatRatingStars span")[j-1]?.classList.add("selected");
+                }
+            }; })(i);
+            starsDiv.appendChild(star);
+        }
+        let acceptBtn = document.getElementById("chatAcceptAgain"), rejectBtn = document.getElementById("chatRejectAgain");
+        let newAccept = acceptBtn.cloneNode(true), newReject = rejectBtn.cloneNode(true);
+        acceptBtn.parentNode.replaceChild(newAccept, acceptBtn);
+        rejectBtn.parentNode.replaceChild(newReject, rejectBtn);
+        newAccept.onclick = () => { aceitouNovaInteracao = true; };
+        newReject.onclick = () => { aceitouNovaInteracao = false; };
+        document.getElementById("chatSubmitRating").onclick = () => {
+            if(notaSelecionada === 0) { alert("Selecione uma nota"); return; }
+            if(aceitouNovaInteracao === null) { alert("Indique se quer nova interação"); return; }
+            if(aceitouNovaInteracao) {
+                const jaExiste = usuarioAtual.conexoesAtivas.find(c => c.id === chatAtual.id);
+                if(!jaExiste) usuarioAtual.conexoesAtivas.push({ id: chatAtual.id, nome: chatAtual.nome, conversasCount: 1 });
+                else jaExiste.conversasCount++;
+                usuarioAtual.mediaReciprocidade = (usuarioAtual.mediaReciprocidade * usuarioAtual.conexoesTotal + 1) / (usuarioAtual.conexoesTotal + 1);
+            } else {
+                usuarioAtual.mediaReciprocidade = (usuarioAtual.mediaReciprocidade * usuarioAtual.conexoesTotal + 0) / (usuarioAtual.conexoesTotal + 1);
+            }
+            usuarioAtual.conexoesTotal++;
+            usuarioAtual.conversasRealizadas.push({ id: chatAtual.id, nome: chatAtual.nome, nota: notaSelecionada });
+            const novaReputacao = (usuarioAtual.reputacao * (usuarioAtual.conexoesTotal - 1) + notaSelecionada) / usuarioAtual.conexoesTotal;
+            usuarioAtual.reputacao = parseFloat(novaReputacao.toFixed(2));
+            localStorage.setItem("nexumUserProfile", JSON.stringify(usuarioAtual));
+            document.getElementById("chatModal").classList.remove("active");
+            alert(`✅ Avaliação: ${notaSelecionada}/10 | Nova interação: ${aceitouNovaInteracao ? "SIM" : "NÃO"}`);
+            atualizarUI();
+        };
+    }
+
+    function solicitarMediacaoChat() {
+        alert("🤖 [IA de Mediação Ativada]\n\n💡 Sugestão: Tente usar a frase 'Eu entendo que você vê isso de outra forma. Pode me explicar melhor?'");
+        usuarioAtual.mediacoesRealizadas++;
+        if(Math.random() > 0.4) {
+            alert("✅ Mediação aplicada!");
+            usuarioAtual.mediacoesSucedidas++;
+        }
+        localStorage.setItem("nexumUserProfile", JSON.stringify(usuarioAtual));
+        atualizarUI();
+    }
+
+    // ==================== ATUALIZAR INTERFACE ====================
+    function atualizarUI() {
+        document.getElementById("dashboardUserName").innerHTML = `${usuarioAtual.nome || "Usuário"}`;
+        document.getElementById("dashboardArchetype").innerHTML = usuarioAtual.arquetipo;
+        document.getElementById("dashboardReputation").innerHTML = `⭐ ${usuarioAtual.reputacao.toFixed(1)}`;
+        document.getElementById("statsGrid").innerHTML = `
+            <div class="metric-card"><div class="metric-value">${usuarioAtual.reputacao.toFixed(1)}</div><div>Reputação</div></div>
+            <div class="metric-card"><div class="metric-value">${usuarioAtual.conexoesTotal || 0}</div><div>Conexões</div></div>
+            <div class="metric-card"><div class="metric-value">${(usuarioAtual.mediaReciprocidade || 0).toFixed(2)}</div><div>Reciprocidade</div></div>
+            <div class="metric-card"><div class="metric-value">${(usuarioAtual.diversidadeCognitiva || 0).toFixed(2)}</div><div>Diversidade</div></div>
+            <div class="metric-card"><div class="metric-value">${usuarioAtual.pontosCegos || 0}</div><div>Sem reciprocidade</div></div>
+            <div class="metric-card"><div class="metric-value">${usuarioAtual.diferencasIrreconciliaveis || 0}</div><div>Diferenças Irreconciliáveis</div></div>`;
+        document.getElementById("pontesNaturais").innerHTML = `<strong>🌉 Pontes Naturais:</strong><br>• Conecta diferentes gerações<br>• Conecta diferentes segmentos<br>• Conecta diferentes visões políticas`;
+        let badges = [`<span class="tag">👻 ${usuarioAtual.arquetipo}</span>`];
+        if(usuarioAtual.conexoesTotal >= 30) badges.push('<span class="tag">🧭 Explorador</span>');
+        if(usuarioAtual.conexoesTotal >= 50) badges.push('<span class="tag">🔗 Conector</span>');
+        if(usuarioAtual.conexoesTotal >= 100) badges.push('<span class="tag">🛡️ Guardião</span>');
+        if(usuarioAtual.mediacoesRealizadas > 5) badges.push('<span class="tag">🕊️ Mediador</span>');
+        document.getElementById("badgesList").innerHTML = badges.join("");
+        let sugestoes = pessoasSugestoes.filter(p => !(usuarioAtual.conversasRealizadas || []).some(c => c.id === p.id));
+        document.getElementById("suggestionsList").innerHTML = sugestoes.map(p => `
+            <div class="connection-card">
+                <div class="connection-header"><span class="connection-name">${p.nome}, ${p.idade} anos</span><div><span class="tag">⭐ ${p.reputacao}</span><span class="tag">📍 ${p.cidade}</span></div></div>
+                <div class="connection-header" style="margin-top:8px;"><span class="tag">💼 ${p.profissao}</span><span class="tag">🙏 ${p.religiao}</span><span class="tag">🗳️ ${p.politica}</span></div>
+                <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:12px;"><button class="btn-primary" onclick="abrirOpcoesConexao(${JSON.stringify(p).replace(/"/g, '&quot;')})">🔗 Conectar</button></div>
+            </div>`).join("");
+        document.getElementById("activeConnectionsList").innerHTML = (usuarioAtual.conexoesAtivas || []).length ? 
+            usuarioAtual.conexoesAtivas.map(c => {
+                const pessoa = pessoasSugestoes.find(p => p.id === c.id) || { nome: c.nome, cidade: "", profissao: "", reputacao: 0 };
+                return `<div class="connection-card"><div class="connection-header"><span class="connection-name">${pessoa.nome}</span><div><span class="tag">💬 ${c.conversasCount} conversas</span><span class="tag">⭐ ${pessoa.reputacao}</span></div></div><div class="connection-header" style="margin-top:8px;"><span class="tag">📍 ${pessoa.cidade}</span><span class="tag">💼 ${pessoa.profissao}</span></div><div style="display:flex; gap:8px; justify-content:flex-end; margin-top:12px;"><button class="btn-primary" onclick="abrirOpcoesConexao(${JSON.stringify(pessoa).replace(/"/g, '&quot;')})">📞 Reconectar</button></div></div>`;
+            }).join("") : "<div style='text-align:center; padding:40px;'>✨ Nenhuma conexão ativa ainda.</div>";
+        document.getElementById("profileStats").innerHTML = `
+            <div class="metric-card"><strong>🧑 ${usuarioAtual.nome || "-"}</strong><br>📍 ${usuarioAtual.localidade || "-"}</div>
+            <div class="metric-card"><strong>🎭 ${usuarioAtual.arquetipo}</strong><br>⭐ ${usuarioAtual.reputacao.toFixed(1)}</div>
+            <div class="metric-card"><strong>📌 Área:</strong><br>${usuarioAtual.areaAtuacao || "-"}<br><small>${usuarioAtual.faseAtual || ""}</small></div>
+            <div class="metric-card"><strong>🙏 ${usuarioAtual.religiao || "-"}</strong><br>🗳️ ${usuarioAtual.posicaoPolitica || "-"}<br>⚽ ${usuarioAtual.timeFutebol || "-"}</div>
+            <div class="metric-card"><strong>⭐ Valores:</strong><br>${usuarioAtual.valores || "-"}</div>
+            <div class="metric-card"><strong>💛 Gosta:</strong><br>${(usuarioAtual.gostosTexto || "").substring(0, 50)}...</div>
+            <div class="metric-card"><strong>📖 Quer aprender:</strong><br>${(usuarioAtual.aprenderTexto || "").substring(0, 50)}...</div>`;
+        let evolucaoHtml = `<div class="metrics-grid"><div class="metric-card"><div class="metric-value">${new Date(usuarioAtual.dataCadastro).toLocaleDateString()}</div><div>Data de cadastro</div></div><div class="metric-card"><div class="metric-value">${usuarioAtual.conexoesTotal || 0}</div><div>Conexões acumuladas</div></div><div class="metric-card"><div class="metric-value">${(usuarioAtual.reputacao).toFixed(1)}</div><div>Reputação atual</div></div><div class="metric-card"><div class="metric-value">${usuarioAtual.mediacoesRealizadas}</div><div>Mediações realizadas</div></div></div>`;
+        if(usuarioAtual.timeline && usuarioAtual.timeline.length > 0) {
+            evolucaoHtml += `<h4 style="margin:20px 0 12px;">📜 Histórico de mudanças</h4>`;
+            evolucaoHtml += usuarioAtual.timeline.map(t => `<div style="background:#f8fafc; border-radius:16px; padding:12px; margin-bottom:12px; border-left:4px solid #5b8c5a;"><div style="font-size:0.7rem; color:#5a6e7a;">📅 ${new Date(t.data).toLocaleDateString()}</div><div style="font-size:0.85rem;"><strong>${t.campo}</strong><br><span style="color:#e67e22;">Antes:</span> ${t.valorAnterior}<br><span style="color:#5b8c5a;">Depois:</span> ${t.valorNovo}</div></div>`).join("");
+        } else {
+            evolucaoHtml += `<p style="text-align:center; padding:20px;">Nenhuma mudança registrada ainda.</p>`;
+        }
+        document.getElementById("evolutionStats").innerHTML = evolucaoHtml;
+    }
+
+    // ==================== EDIÇÃO DE PERFIL ====================
+    function abrirEdicaoPerfil() {
+        document.getElementById("editAreaAtuacao").value = usuarioAtual.areaAtuacao || "";
+        document.getElementById("editFaseAtual").value = usuarioAtual.faseAtual || "Profissional experiente";
+        document.getElementById("editReligiao").value = usuarioAtual.religiao || "";
+        document.getElementById("editPosicaoPolitica").value = usuarioAtual.posicaoPolitica || "";
+        document.getElementById("editTimeFutebol").value = usuarioAtual.timeFutebol || "";
+        document.getElementById("editValores").value = usuarioAtual.valores || "";
+        document.getElementById("editGostosTexto").value = usuarioAtual.gostosTexto || "";
+        document.getElementById("editAprenderTexto").value = usuarioAtual.aprenderTexto || "";
+        document.getElementById("editCrencasTransformacao").value = usuarioAtual.crencasTransformacao || "";
+        document.getElementById("editDuvidasAbertas").value = usuarioAtual.duvidasAbertas || "";
+        document.getElementById("editExperienciasVirada").value = usuarioAtual.experienciasVirada || "";
+        document.getElementById("editProfileModal").classList.add("active");
+    }
+
+    function salvarAlteracoesPerfil() {
+        const novosDados = {
+            areaAtuacao: document.getElementById("editAreaAtuacao").value,
+            faseAtual: document.getElementById("editFaseAtual").value,
+            religiao: document.getElementById("editReligiao").value,
+            posicaoPolitica: document.getElementById("editPosicaoPolitica").value,
+            timeFutebol: document.getElementById("editTimeFutebol").value,
+            valores: document.getElementById("editValores").value,
+            gostosTexto: document.getElementById("editGostosTexto").value,
+            aprenderTexto: document.getElementById("editAprenderTexto").value,
+            crencasTransformacao: document.getElementById("editCrencasTransformacao").value,
+            duvidasAbertas: document.getElementById("editDuvidasAbertas").value,
+            experienciasVirada: document.getElementById("editExperienciasVirada").value
+        };
+        if(usuarioAtual.areaAtuacao !== novosDados.areaAtuacao && novosDados.areaAtuacao) {
+            usuarioAtual.timeline.unshift({ data: new Date().toISOString(), campo: "Área de atuação", valorAnterior: usuarioAtual.areaAtuacao || "(não informado)", valorNovo: novosDados.areaAtuacao });
+        }
+        if(usuarioAtual.faseAtual !== novosDados.faseAtual) {
+            usuarioAtual.timeline.unshift({ data: new Date().toISOString(), campo: "Fase atual da carreira", valorAnterior: usuarioAtual.faseAtual, valorNovo: novosDados.faseAtual });
+        }
+        if(usuarioAtual.religiao !== novosDados.religiao && novosDados.religiao) {
+            usuarioAtual.timeline.unshift({ data: new Date().toISOString(), campo: "Religião/Espiritualidade", valorAnterior: usuarioAtual.religiao || "(não informado)", valorNovo: novosDados.religiao });
+        }
+        if(usuarioAtual.posicaoPolitica !== novosDados.posicaoPolitica && novosDados.posicaoPolitica) {
+            usuarioAtual.timeline.unshift({ data: new Date().toISOString(), campo: "Posição política", valorAnterior: usuarioAtual.posicaoPolitica || "(não informado)", valorNovo: novosDados.posicaoPolitica });
+        }
+        if(usuarioAtual.timeFutebol !== novosDados.timeFutebol && novosDados.timeFutebol) {
+            usuarioAtual.timeline.unshift({ data: new Date().toISOString(), campo: "Time de futebol", valorAnterior: usuarioAtual.timeFutebol || "(não informado)", valorNovo: novosDados.timeFutebol });
+        }
+        if(usuarioAtual.valores !== novosDados.valores && novosDados.valores) {
+            usuarioAtual.timeline.unshift({ data: new Date().toISOString(), campo: "Valores fundamentais", valorAnterior: usuarioAtual.valores || "(não informado)", valorNovo: novosDados.valores });
+        }
+        if(usuarioAtual.gostosTexto !== novosDados.gostosTexto && novosDados.gostosTexto) {
+            usuarioAtual.timeline.unshift({ data: new Date().toISOString(), campo: "Hobbies e interesses", valorAnterior: usuarioAtual.gostosTexto || "(não informado)", valorNovo: novosDados.gostosTexto });
+        }
+        if(usuarioAtual.aprenderTexto !== novosDados.aprenderTexto && novosDados.aprenderTexto) {
+            usuarioAtual.timeline.unshift({ data: new Date().toISOString(), campo: "Interesses de aprendizado", valorAnterior: usuarioAtual.aprenderTexto, valorNovo: novosDados.aprenderTexto });
+        }
+        if(usuarioAtual.crencasTransformacao !== novosDados.crencasTransformacao && novosDados.crencasTransformacao) {
+            usuarioAtual.timeline.unshift({ data: new Date().toISOString(), campo: "Crenças em transformação", valorAnterior: usuarioAtual.crencasTransformacao, valorNovo: novosDados.crencasTransformacao });
+        }
+        if(usuarioAtual.duvidasAbertas !== novosDados.duvidasAbertas && novosDados.duvidasAbertas) {
+            usuarioAtual.timeline.unshift({ data: new Date().toISOString(), campo: "Dúvidas abertas", valorAnterior: usuarioAtual.duvidasAbertas, valorNovo: novosDados.duvidasAbertas });
+        }
+        if(usuarioAtual.experienciasVirada !== novosDados.experienciasVirada && novosDados.experienciasVirada) {
+            usuarioAtual.timeline.unshift({ data: new Date().toISOString(), campo: "Experiências de virada", valorAnterior: usuarioAtual.experienciasVirada, valorNovo: novosDados.experienciasVirada });
+        }
+        if(usuarioAtual.timeline.length > 50) usuarioAtual.timeline = usuarioAtual.timeline.slice(0, 50);
+        Object.assign(usuarioAtual, novosDados);
+        usuarioAtual.ultimaRevisao = new Date().toISOString();
+        localStorage.setItem("nexumUserProfile", JSON.stringify(usuarioAtual));
+        document.getElementById("editProfileModal").classList.remove("active");
+        alert("✅ Perfil atualizado com sucesso!");
+        atualizarUI();
+    }
+
+    function cancelarEdicao() {
+        document.getElementById("editProfileModal").classList.remove("active");
+    }
+
+    // Eventos
+    document.getElementById("chatOptionBtn").onclick = iniciarChat;
+    document.getElementById("sendChatBtn").onclick = enviarMensagemChat;
+    document.getElementById("endChatBtn").onclick = encerrarChat;
+    document.getElementById("mediacaoChatBtn").onclick = solicitarMediacaoChat;
+    document.getElementById("chatInput").addEventListener("keypress", (e) => { if(e.key === "Enter") enviarMensagemChat(); });
+
+    // Modais
+    document.getElementById("closeConnectModal").onclick = () => document.getElementById("connectModal").classList.remove("active");
+    document.getElementById("closeChatModal").onclick = () => document.getElementById("chatModal").classList.remove("active");
+    document.getElementById("closeEditModal").onclick = cancelarEdicao;
+
+    // Edição de perfil
+    document.getElementById("editProfileBtn").onclick = abrirEdicaoPerfil;
+    document.getElementById("saveProfileChanges").onclick = salvarAlteracoesPerfil;
+    document.getElementById("cancelEditBtn").onclick = cancelarEdicao;
+    document.getElementById("reviewNowBtn").onclick = abrirEdicaoPerfil;
+
+    // Navegação
+    document.querySelectorAll(".nav-tab").forEach(tab => {
+        tab.onclick = () => {
+            document.querySelectorAll(".nav-tab").forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+            document.querySelectorAll(".tab-content").forEach(t => t.classList.add("hidden"));
+            document.getElementById(tab.dataset.tab + "Tab").classList.remove("hidden");
+        };
+    });
+
+    // Controle do algoritmo
+    const modeSelect = document.getElementById("discoveryMode");
+    const exploracaoDiv = document.getElementById("exploracaoInput");
+    modeSelect.onchange = () => {
+        const mode = modeSelect.value;
+        const descriptions = {
+            "expandir": "🌍 Expandir Horizontes: prioriza pessoas DIFERENTES de você (região, profissão, idade).",
+            "aprofundar": "💞 Aprofundar Conexões: prioriza interesses SIMILARES e reconexões.",
+            "aleatorio": "🎲 Exploração Livre: diga o que você quer explorar."
+        };
+        document.getElementById("modeDescription").innerHTML = descriptions[mode];
+        exploracaoDiv.classList.toggle("hidden", mode !== "aleatorio");
+        if(mode === "aleatorio") {
+            document.getElementById("buscarBtn").onclick = () => {
+                const texto = document.getElementById("buscaTexto").value;
+                if(texto.trim()) alert(`🔍 Buscando por: "${texto}"\n\nEncontramos pessoas relacionadas!`);
+                else alert("Digite o que você quer explorar");
+            };
+        }
+    };
+    modeSelect.dispatchEvent(new Event('change'));
+
+    window.onclick = (event) => {
+        const modals = ["editProfileModal", "connectModal", "chatModal"];
+        modals.forEach(id => {
+            const modal = document.getElementById(id);
+            if(event.target === modal) modal.classList.remove("active");
+        });
+    };
+
+    // Logout
+    document.getElementById("logoutDashboardBtn").onclick = () => { window.parent.postMessage("dashboardLogout", "*"); };
+    carregarPerfil();
+</script>
+</body>
+</html>

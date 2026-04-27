@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Nexum Social · Início</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f2 100%); min-height:100vh; padding:20px; }
+        .main-container { max-width:1300px; margin:0 auto; }
+        .hero { text-align:center; margin-bottom:40px; padding:30px 20px 20px; }
+        .logo-icon { width:80px; height:80px; background:linear-gradient(135deg,#2c5f8a,#5b8c5a); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:44px; color:white; margin-bottom:16px; }
+        .logo-text { font-size:2.5rem; font-weight:800; background:linear-gradient(135deg,#2c5f8a,#5b8c5a); background-clip:text; -webkit-background-clip:text; color:transparent; }
+        .tagline { font-size:1.2rem; color:#2c5f8a; font-weight:500; margin-top:8px; }
+        .sub-line { font-size:0.95rem; color:#4a6272; margin-top:16px; max-width:600px; margin-left:auto; margin-right:auto; }
+        .highlight-badge { background:linear-gradient(120deg,#e8f0fe,#d4e4f7); display:inline-block; padding:8px 20px; border-radius:60px; font-weight:600; color:#1f4e6e; margin-top:20px; font-size:0.85rem; border-left:3px solid #e67e22; }
+        .tabs-principais { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:32px; }
+        .tab-btn { background:white; border:none; padding:12px 28px; border-radius:60px; font-weight:700; font-size:1rem; cursor:pointer; transition:all 0.2s; box-shadow:0 2px 6px rgba(0,0,0,0.05); color:#2c5f8a; border:1px solid #cbd5e1; }
+        .tab-btn:hover { background:#e8f0fe; transform:translateY(-2px); }
+        .tab-btn.active { background:linear-gradient(135deg,#2c5f8a,#5b8c5a); color:white; border-color:transparent; }
+        .tab-pane { display:none; animation:fadeIn 0.25s ease; }
+        .tab-pane.active-pane { display:block; }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(8px);} to { opacity:1; transform:translateY(0);} }
+        .login-card { background:white; border-radius:32px; padding:32px; max-width:500px; margin:0 auto; box-shadow:0 12px 28px rgba(0,0,0,0.08); }
+        .form-group { margin-bottom:20px; }
+        label { font-weight:600; display:block; margin-bottom:8px; color:#2c5f8a; }
+        input { width:100%; padding:12px 16px; border:1.5px solid #e2e8f0; border-radius:28px; font-family:inherit; font-size:0.95rem; }
+        input:focus { outline:none; border-color:#5b8c5a; box-shadow:0 0 0 3px rgba(91,140,90,0.1); }
+        .btn-primary { background:#5b8c5a; color:white; border:none; padding:12px 24px; border-radius:40px; font-weight:700; cursor:pointer; width:100%; font-size:1rem; transition:all 0.2s; }
+        .btn-primary:hover { background:#4a7350; transform:translateY(-1px); }
+        .error-msg { color:#e67e22; font-size:0.8rem; margin-top:8px; }
+        .success-msg { color:#5b8c5a; font-size:0.8rem; margin-top:8px; }
+        .info-box { background:#f8fafc; border-radius:20px; padding:16px; margin-top:20px; font-size:0.8rem; color:#4a6272; text-align:center; }
+        .link-btn { background:none; border:none; color:#2c5f8a; cursor:pointer; font-weight:600; text-decoration:underline; margin-top:12px; display:inline-block; }
+        .hidden { display:none; }
+        iframe { width:100%; height:80vh; border:none; border-radius:28px; background:white; box-shadow:0 8px 20px rgba(0,0,0,0.08); }
+        .footer { text-align:center; margin-top:40px; font-size:0.7rem; color:#5a6e7a; padding-bottom:20px; }
+        .manifesto-card { background:white; border-radius:32px; padding:40px; max-width:900px; margin:0 auto; box-shadow:0 12px 28px rgba(0,0,0,0.08); line-height:1.6; color:#1a2c3e; }
+        .manifesto-card h1 { font-size:2rem; font-weight:800; background:linear-gradient(135deg,#2c5f8a,#5b8c5a); background-clip:text; -webkit-background-clip:text; color:transparent; margin-bottom:16px; }
+        .manifesto-card h2 { font-size:1.5rem; color:#2c5f8a; margin:32px 0 16px; }
+        .manifesto-card h3 { font-size:1.2rem; color:#e67e22; margin:24px 0 12px; }
+        .manifesto-card p { margin-bottom:16px; color:#4a6272; }
+        .manifesto-card .quote { font-style:italic; border-left:4px solid #e67e22; padding-left:20px; margin:24px 0; background:#f8fafc; border-radius:16px; padding:20px; }
+        .manifesto-card .highlight-manifesto { background:linear-gradient(120deg,#e8f0fe,#d4e4f7); padding:24px; border-radius:24px; margin:24px 0; text-align:center; }
+        .manifesto-button { background:#5b8c5a; color:white; border:none; padding:12px 28px; border-radius:60px; font-weight:700; font-size:1rem; cursor:pointer; margin-top:16px; transition:all 0.2s; }
+        .manifesto-button:hover { background:#4a7350; transform:translateY(-2px); }
+        @media (max-width:768px){ .manifesto-card { padding:24px; } .manifesto-card h1 { font-size:1.5rem; } }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <div class="hero" id="heroSection">
+        <div class="logo-icon">⟳</div>
+        <div class="logo-text">NEXUM</div>
+        <div class="tagline">Conecte-se com intenção — Transforme suas relações</div>
+        <div class="sub-line">🔁 Aqui é você que controla o algoritmo, não o contrário</div>
+        <div class="highlight-badge">🌱 Ajude a curar o tecido social: aprenda a se conectar com quem pensa diferente</div>
+    </div>
+
+    <div class="tabs-principais" id="mainTabs">
+        <button class="tab-btn active" data-tab="onboarding">🌱 Primeiro Acesso</button>
+        <button class="tab-btn" data-tab="entrar">🔐 Entrar</button>
+        <button class="tab-btn" data-tab="gestao">🛡️ Gestão Nexum</button>
+        <button class="tab-btn" data-tab="manifesto">📜 Manifesto</button>
+    </div>
+
+    <div id="onboardingPane" class="tab-pane active-pane">
+        <iframe src="onboarding.html"></iframe>
+    </div>
+
+    <div id="entrarPane" class="tab-pane">
+        <div id="entrarLoginArea">
+            <div class="login-card">
+                <h3 style="color:#1f4e6e; margin-bottom:24px; text-align:center;">Acesse sua conta</h3>
+                <div class="form-group"><label>📧 E-mail</label><input type="email" id="loginEmail" placeholder="seu@email.com"></div>
+                <div class="form-group"><label>🔒 Senha</label><input type="password" id="loginSenha" placeholder="Sua senha"><div id="loginError" class="error-msg"></div></div>
+                <button class="btn-primary" id="loginBtn">🚪 Entrar no Dashboard</button>
+                <button class="link-btn" id="forgotPasswordBtn">Esqueci minha senha</button>
+            </div>
+        </div>
+        <div id="forgotPasswordArea" class="hidden">
+            <div class="login-card">
+                <h3 style="color:#1f4e6e; margin-bottom:24px; text-align:center;">Recuperar senha</h3>
+                <div class="form-group"><label>📧 E-mail cadastrado</label><input type="email" id="resetEmail" placeholder="seu@email.com"><div id="resetError" class="error-msg"></div><div id="resetSuccess" class="success-msg"></div></div>
+                <button class="btn-primary" id="sendResetLinkBtn">Enviar nova senha</button>
+                <button class="link-btn" id="backToLoginBtn">← Voltar para o login</button>
+            </div>
+        </div>
+        <div id="dashboardContainer" style="margin-top:24px;"></div>
+    </div>
+
+    <div id="gestaoPane" class="tab-pane">
+        <div class="login-card" id="adminLoginCard">
+            <h3 style="color:#1f4e6e; margin-bottom:24px; text-align:center;">👑 Gestão Nexum</h3>
+            <div class="info-box" style="margin-top:8px;">🔐 Acesse com suas credenciais de administrador.</div>
+        </div>
+        <div id="adminContainer" style="margin-top:24px;"></div>
+    </div>
+
+    <div id="manifestoPane" class="tab-pane">
+        <div class="manifesto-card">
+            <h1>🧭 Nexum Social · Manifesto</h1>
+            <p style="font-size:1.2rem; font-weight:500; color:#2c5f8a;">“Conecte-se com intenção. Transforme suas relações. Cure o tecido social.”</p>
+            <h2>🙌 Por que existe o Nexum?</h2>
+            <p>A gente cansou de redes sociais que <strong>nos usam</strong> – que viciam, que gritam, que nos enfiam em bolhas e nos fazem acreditar que o outro é um monstro.</p>
+            <p>A gente cansou do algoritmo que decide o que você vê, com quem você fala e como você se sente.</p>
+            <p>A gente cansou de sair de uma conversa online pior do que entramos.</p>
+            <p><strong>Por isso criamos o Nexum Social.</strong> Um lugar onde <strong>você controla o algoritmo</strong>, e não o contrário. Onde a tecnologia trabalha <strong>para você se conectar melhor</strong>, não para te prender em loops de ódio e comparação.</p>
+            <h2>🌎 Por que ele é importante agora?</h2>
+            <p>O mundo está mais conectado digitalmente e mais <strong>fragmentado humanamente</strong>. Nunca nos comunicamos tanto, mas nunca nos entendemos tão pouco.</p>
+            <p>As grandes redes lucram com <strong>barulho, polarização e isolamento</strong>. Quanto mais raiva, mais clique. Quanto mais medo, mais tempo de tela.</p>
+            <p>O Nexum Social é um <strong>sistema imunológico para o tecido social</strong>. Ele foi feito para:</p>
+            <ul style="margin-left:2rem;margin-bottom:1rem;"><li>✅ Regenerar a confiança entre estranhos.</li><li>✅ Valorizar a diferença – você pode (e deve) se conectar com quem pensa diferente.</li><li>✅ Relembrar que por trás de cada perfil existe um ser humano com dúvidas, sonhos e contradições.</li></ul>
+            <p>Neste momento da humanidade, a gente precisa <strong>reaprender a conversar</strong> – e isso começa com uma plataforma que não tem vergonha de colocar pessoas reais em primeiro lugar.</p>
+            <h2>🚀 Por que você deve ajudar a espalhar essa ideia?</h2>
+            <p>Porque o Nexum Social será <strong>gratuito</strong>. Para sempre. Não vamos te cobrar nada. Não vamos te vender anúncios baseados nos seus segredos. Não vamos te manipular.</p>
+            <p><strong>Nossa moeda é uma só: conexões reais.</strong></p>
+            <p>Mas para isso funcionar, precisamos de <strong>pessoas como você</strong> – pessoas que acreditam que a tecnologia pode ser usada para o bem.</p>
+            <p>Espalhe a palavra. Conte para um amigo. Convide quem pensa diferente. Compartilhe este manifesto.</p>
+            <div class="highlight-manifesto"><p style="font-size:1.2rem; font-weight:600;">“Se você quer um mundo menos raivoso e mais curioso, o Nexum é a sua ferramenta. E você é nosso parceiro nessa missão.”</p></div>
+            <h3>📢 O que você pode fazer agora?</h3>
+            <ol style="margin-left:2rem;margin-bottom:1rem;"><li><strong>Acesse</strong> – faça seu onboarding e veja como é gostoso ter controle.</li><li><strong>Convide</strong> – quanto mais diversas as vozes, mais rica a conversa.</li><li><strong>Seja gentil</strong> – aqui a reputação vale mais que qualquer like.</li></ol>
+            <div class="quote"><p>“O algoritmo não manda em você. Você manda no algoritmo.”</p></div>
+            <p>🌱 Vamos juntos curar o tecido social.<br><strong>Nexum Social – gratuito, humano e revolucionário.</strong></p>
+            <div style="text-align:center; margin-top:32px;"><button class="manifesto-button" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copiado! Compartilhe o manifesto.')">📋 Copiar link do manifesto</button></div>
+        </div>
+    </div>
+    <div class="footer" id="footerSection">Nexum Social — Tecnologia relacional para regeneração do tecido social. © 2026</div>
+</div>
+
+<script>
+    const entrarLoginArea = document.getElementById('entrarLoginArea');
+    const forgotPasswordArea = document.getElementById('forgotPasswordArea');
+    const dashboardContainer = document.getElementById('dashboardContainer');
+    const adminContainer = document.getElementById('adminContainer');
+    const mainTabs = document.getElementById('mainTabs');
+    const heroSection = document.getElementById('heroSection');
+    const footerSection = document.getElementById('footerSection');
+    const entrarPane = document.getElementById('entrarPane');
+    const gestaoPane = document.getElementById('gestaoPane');
+    const adminLoginCard = document.getElementById('adminLoginCard');
+
+    let adminIframeLoaded = false;
+    function loadAdminOnce() {
+        if (!adminIframeLoaded) {
+            adminContainer.innerHTML = '';
+            const iframe = document.createElement('iframe');
+            iframe.src = 'admin.html';
+            iframe.style.width = '100%';
+            iframe.style.height = '80vh';
+            iframe.style.border = 'none';
+            iframe.style.borderRadius = '28px';
+            adminContainer.appendChild(iframe);
+            adminIframeLoaded = true;
+        }
+    }
+
+    function showOnlyPanel(panelId) {
+        mainTabs.style.display = 'none';
+        heroSection.style.display = 'none';
+        footerSection.style.display = 'none';
+        document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active-pane'));
+        document.getElementById(panelId).classList.add('active-pane');
+        if (panelId === 'gestao') {
+            loadAdminOnce();
+            adminLoginCard.style.display = 'none';
+        }
+    }
+
+    function loadDashboard() {
+        dashboardContainer.innerHTML = '';
+        const iframe = document.createElement('iframe');
+        iframe.src = 'dashboard.html';
+        iframe.style.width = '100%';
+        iframe.style.height = '80vh';
+        iframe.style.border = 'none';
+        iframe.style.borderRadius = '28px';
+        dashboardContainer.appendChild(iframe);
+        showOnlyPanel('entrarPane');
+        entrarLoginArea.classList.add('hidden');
+    }
+
+    const tabs = document.querySelectorAll('.tab-btn');
+    function activateTab(tabId) {
+        document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active-pane'));
+        if (tabId === 'onboarding') document.getElementById('onboardingPane').classList.add('active-pane');
+        else if (tabId === 'entrar') entrarPane.classList.add('active-pane');
+        else if (tabId === 'gestao') { gestaoPane.classList.add('active-pane'); loadAdminOnce(); }
+        else if (tabId === 'manifesto') document.getElementById('manifestoPane').classList.add('active-pane');
+        tabs.forEach(btn => {
+            if (btn.dataset.tab === tabId) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+    }
+    tabs.forEach(btn => btn.addEventListener('click', () => activateTab(btn.dataset.tab)));
+
+    function fazerLoginParticipante(email, senha) {
+        const usuarios = JSON.parse(localStorage.getItem('nexumUsuarios') || '[]');
+        const usuario = usuarios.find(u => u.email === email && u.senha === senha);
+        if (!usuario) return false;
+        const perfis = JSON.parse(localStorage.getItem('nexumUserProfiles') || '{}');
+        const perfil = perfis[usuario.userId];
+        if (perfil) localStorage.setItem('nexumUserProfile', JSON.stringify(perfil));
+        return true;
+    }
+
+    document.getElementById('loginBtn').addEventListener('click', () => {
+        const email = document.getElementById('loginEmail').value.trim();
+        const senha = document.getElementById('loginSenha').value;
+        if (!email || !senha) { document.getElementById('loginError').innerHTML = '❌ Preencha e-mail e senha.'; return; }
+        if (fazerLoginParticipante(email, senha)) {
+            document.getElementById('loginError').innerHTML = '';
+            loadDashboard();
+        } else {
+            document.getElementById('loginError').innerHTML = '❌ E-mail ou senha inválidos.';
+        }
+    });
+
+    document.getElementById('forgotPasswordBtn').onclick = () => { entrarLoginArea.classList.add('hidden'); forgotPasswordArea.classList.remove('hidden'); };
+    document.getElementById('backToLoginBtn').onclick = () => { entrarLoginArea.classList.remove('hidden'); forgotPasswordArea.classList.add('hidden'); document.getElementById('resetError').innerHTML = ''; document.getElementById('resetSuccess').innerHTML = ''; document.getElementById('resetEmail').value = ''; };
+    document.getElementById('sendResetLinkBtn').onclick = () => {
+        const email = document.getElementById('resetEmail').value.trim();
+        const usuarios = JSON.parse(localStorage.getItem('nexumUsuarios') || '[]');
+        const user = usuarios.find(u => u.email === email);
+        if (!user) { document.getElementById('resetError').innerHTML = '❌ E-mail não encontrado.'; return; }
+        const novaSenha = Math.random().toString(36).substring(2,10);
+        user.senha = novaSenha;
+        localStorage.setItem('nexumUsuarios', JSON.stringify(usuarios));
+        document.getElementById('resetSuccess').innerHTML = `✅ Nova senha: <strong>${novaSenha}</strong> (copie e use para login)`;
+        setTimeout(() => document.getElementById('resetSuccess').innerHTML = '', 20000);
+    };
+
+    // NÃO HÁ MAIS TENTATIVA DE LOGIN EXTERNO PARA O ADMIN
+    window.addEventListener('message', (e) => {
+        if (e.data === 'onboardingConcluido') loadDashboard();
+        else if (e.data === 'dashboardLogout') { localStorage.removeItem('nexumUserProfile'); location.reload(); }
+        else if (e.data === 'adminLogout') location.reload();
+    });
+
+    const originalSetItem = localStorage.setItem;
+    localStorage.setItem = function(key,value) {
+        if (key === 'nexumUserProfile') {
+            const perfis = JSON.parse(localStorage.getItem('nexumUserProfiles') || '{}');
+            const perfil = JSON.parse(value);
+            if (perfil.id) { perfis[perfil.id] = perfil; originalSetItem.call(localStorage,'nexumUserProfiles',JSON.stringify(perfis)); }
+        }
+        originalSetItem.call(localStorage,key,value);
+    };
+
+    activateTab('onboarding');
+</script>
+</body>
+</html>
